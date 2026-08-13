@@ -26,6 +26,33 @@
       "type": "string",
       "minLength": 1
     },
+    "data_status": {
+      "type": "string",
+      "enum": ["complete", "partial", "unavailable"]
+    },
+    "calculation_status": {
+      "type": "string",
+      "enum": ["solved", "unsolved", "partial", "not_run", "not_assessed"]
+    },
+    "reason_codes": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "uniqueItems": true
+    },
+    "refresh_requested": {
+      "type": "boolean"
+    },
+    "refreshed": {
+      "type": "boolean"
+    },
+    "data_mode": {
+      "type": "string",
+      "enum": ["live", "live_attempt", "mock", "none"]
+    },
+    "cache_status": {
+      "type": "string",
+      "enum": ["not_configured"]
+    },
     "symbol": {
       "type": "string",
       "minLength": 1
@@ -35,7 +62,8 @@
       "required": ["format", "locale", "text"],
       "properties": {
         "format": {
-          "const": "plain_text_v1"
+          "type": "string",
+          "enum": ["plain_text_v1", "markdown_v1"]
         },
         "locale": {
           "const": "zh-CN"

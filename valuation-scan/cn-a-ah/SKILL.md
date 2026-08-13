@@ -15,6 +15,8 @@ This is a screening contract, not a filing-reconciliation workflow, target-price
 
 The execution adapter accepts an explicit six-digit A-share symbol or a verified company-name resolution. A pure Hong Kong listing is a capability boundary unless a private executor supplies the required consolidated financial inputs.
 
+A small verified A/H identity map may override issuer-name matching when the legal issuer uses materially different A- and H-market names. Symbol-level evidence takes precedence over fuzzy name similarity; ambiguous unmatched candidates remain unresolved.
+
 Banks, insurers, and securities firms are outside this industrial-company cash-flow bridge unless a separate contract is provided.
 
 ## Calculation contract
@@ -54,7 +56,7 @@ The card may retain a combined market-value calculation for internal audit compa
 
 ## Output boundary
 
-Return one `valuation_scan_terminal_receipt_v2` object with a deterministic Chinese `presentation`. Keep source names, raw rows, credentials, local paths, and adapter details outside the public presentation.
+Return one `valuation_scan_terminal_receipt_v2` object with a deterministic Chinese `markdown_v1` presentation. Bold the `隐含 5Y Owner FCFF CAGR` heading and both A- and H-price values. End the card with the H symbol and result status. Keep source names, raw rows, credentials, local paths, adapter details, and detailed status reason codes outside the public presentation.
 
 ## Prohibitions
 

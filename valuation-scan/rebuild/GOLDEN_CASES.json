@@ -1,0 +1,1451 @@
+{
+  "schema_version": "valuation_scan_semantic_golden_cases_v1",
+  "generated_for": "semantic-only reimplementation",
+  "cases": [
+    {
+      "symbol": "AAPL",
+      "market": "US",
+      "fixture_status": "ready",
+      "data_as_of": "2025-09-27",
+      "identity": {
+        "symbol": "AAPL",
+        "company_name": "Apple Inc.",
+        "currency": "USD",
+        "analysis_currency": "USD"
+      },
+      "raw_inputs": {
+        "annual_financials": {
+          "2020": {
+            "revenue": 274515000000.0,
+            "operating_income": 66288000000.0,
+            "income_tax_expense": 9680000000.0,
+            "income_before_tax": 67091000000.0,
+            "cfo": 80674000000.0,
+            "capex": 7309000000.0,
+            "interest_expense": 2873000000.0,
+            "interest_income": 3763000000.0,
+            "period_end": "2020-09-26"
+          },
+          "2021": {
+            "revenue": 365817000000.0,
+            "operating_income": 108949000000.0,
+            "income_tax_expense": 14527000000.0,
+            "income_before_tax": 109207000000.0,
+            "cfo": 104038000000.0,
+            "capex": 11085000000.0,
+            "interest_expense": 2645000000.0,
+            "interest_income": 2843000000.0,
+            "period_end": "2021-09-25"
+          },
+          "2022": {
+            "revenue": 394328000000.0,
+            "operating_income": 119437000000.0,
+            "income_tax_expense": 19300000000.0,
+            "income_before_tax": 119103000000.0,
+            "cfo": 122151000000.0,
+            "capex": 10708000000.0,
+            "interest_expense": 2931000000.0,
+            "interest_income": 2825000000.0,
+            "period_end": "2022-09-24"
+          },
+          "2023": {
+            "revenue": 383285000000.0,
+            "operating_income": 114301000000.0,
+            "income_tax_expense": 16741000000.0,
+            "income_before_tax": 113736000000.0,
+            "cfo": 110543000000.0,
+            "capex": 10959000000.0,
+            "interest_expense": 3933000000.0,
+            "interest_income": 3750000000.0,
+            "period_end": "2023-09-30"
+          },
+          "2024": {
+            "revenue": 391035000000.0,
+            "operating_income": 123216000000.0,
+            "income_tax_expense": 29749000000.0,
+            "income_before_tax": 123485000000.0,
+            "cfo": 118254000000.0,
+            "capex": 9447000000.0,
+            "interest_expense": 0.0,
+            "interest_income": 0.0,
+            "period_end": "2024-09-28"
+          },
+          "2025": {
+            "revenue": 416161000000.0,
+            "operating_income": 133050000000.0,
+            "income_tax_expense": 20719000000.0,
+            "income_before_tax": 132729000000.0,
+            "cfo": 111482000000.0,
+            "capex": 12715000000.0,
+            "interest_expense": 0.0,
+            "interest_income": 0.0,
+            "period_end": "2025-09-27"
+          }
+        },
+        "latest_balance_sheet": {
+          "total_debt": 112377000000.0,
+          "cash_and_equivalents": 35934000000.0,
+          "short_term_investments": 18763000000.0,
+          "minority_interest": null,
+          "preferred_stock": null,
+          "lease_liabilities": 0.0
+        },
+        "market_snapshot": {
+          "price": 317.31,
+          "market_cap": 4660444932360.0,
+          "shares_outstanding": 14687356000,
+          "price_date_from_snapshot": "2026-07-14",
+          "currency": "USD",
+          "analysis_currency": "USD"
+        },
+        "units": {
+          "amounts": "USD",
+          "shares": "shares",
+          "price": "USD/share"
+        }
+      },
+      "calculation_intermediates": {
+        "source_indicator_version": "prescreen_valuation_v1",
+        "legacy_q6": {
+          "source_years": {
+            "current_year": "2025",
+            "market_data_as_of": "MISSING",
+            "ev_balance_sheet_year": "2025",
+            "normalized_nopat_source": "median_nopat_history",
+            "normalized_nopat_year": null,
+            "normalized_nopat_years": [
+              "2016",
+              "2017",
+              "2018",
+              "2019",
+              "2020",
+              "2021",
+              "2022",
+              "2023",
+              "2024",
+              "2025"
+            ],
+            "fcff_year": "2025"
+          },
+          "owner_fcff_components": {
+            "cfo": 111482000000.0,
+            "gross_capex_deducted": 12715000000.0,
+            "interest_income": 0.0,
+            "after_tax_interest_income_deducted": 0.0
+          },
+          "operating_ev_components": {
+            "market_cap": 4660444932360.0,
+            "total_debt": 112377000000.0,
+            "broad_financial_assets_deducted": 54697000000.0
+          }
+        },
+        "canonical_spec_recomputed": {
+          "owner_fcff": 98767000000.0,
+          "operating_ev": 4718124932360.0,
+          "owner_fcff_yield": 0.0209,
+          "implied_owner_fcff_cagr_5y": 0.4229,
+          "historical_cagrs": {
+            "revenue_3y": {
+              "status": "ready",
+              "value": 0.0181,
+              "start_year": "2022",
+              "end_year": "2025",
+              "period_years": 3
+            },
+            "revenue_5y": {
+              "status": "ready",
+              "value": 0.0868,
+              "start_year": "2020",
+              "end_year": "2025",
+              "period_years": 5
+            },
+            "nopat_3y": {
+              "status": "ready",
+              "value": 0.0391,
+              "start_year": "2022",
+              "end_year": "2025",
+              "period_years": 3
+            },
+            "nopat_5y": {
+              "status": "ready",
+              "value": 0.1463,
+              "start_year": "2020",
+              "end_year": "2025",
+              "period_years": 5
+            },
+            "fcff_3y": {
+              "status": "ready",
+              "value": -0.0397,
+              "start_year": "2022",
+              "end_year": "2025",
+              "period_years": 3
+            },
+            "fcff_5y": {
+              "status": "ready",
+              "value": 0.0634,
+              "start_year": "2020",
+              "end_year": "2025",
+              "period_years": 5
+            }
+          },
+          "conservative_floor_key": "fcff_3y",
+          "conservative_floor_cagr": -0.0397,
+          "gap_to_floor": 0.4626,
+          "pressure_label": "high_pressure",
+          "valuation_status": "ready"
+        },
+        "canonical_detail": {
+          "tax_rate_by_year": {
+            "2016": {
+              "raw_tax_rate": 0.2555725738121619,
+              "effective_tax_rate": 0.2555725738121619
+            },
+            "2017": {
+              "raw_tax_rate": 0.24556476150353415,
+              "effective_tax_rate": 0.24556476150353415
+            },
+            "2018": {
+              "raw_tax_rate": 0.18342180705869443,
+              "effective_tax_rate": 0.18342180705869443
+            },
+            "2019": {
+              "raw_tax_rate": 0.1594383680423506,
+              "effective_tax_rate": 0.1594383680423506
+            },
+            "2020": {
+              "raw_tax_rate": 0.14428164731484103,
+              "effective_tax_rate": 0.14428164731484103
+            },
+            "2021": {
+              "raw_tax_rate": 0.13302260844085087,
+              "effective_tax_rate": 0.13302260844085087
+            },
+            "2022": {
+              "raw_tax_rate": 0.16204461684424407,
+              "effective_tax_rate": 0.16204461684424407
+            },
+            "2023": {
+              "raw_tax_rate": 0.14719174228036858,
+              "effective_tax_rate": 0.14719174228036858
+            },
+            "2024": {
+              "raw_tax_rate": 0.24091185164189982,
+              "effective_tax_rate": 0.24091185164189982
+            },
+            "2025": {
+              "raw_tax_rate": 0.15610002335586043,
+              "effective_tax_rate": 0.15610002335586043
+            }
+          },
+          "tax_rate_used_unrounded": 0.18140120575937627,
+          "tax_rate_used_selected_years": [
+            "2023",
+            "2024",
+            "2025"
+          ],
+          "nopat_by_year": {
+            "2016": 44683511829.498795,
+            "2017": 46280075270.3272,
+            "2018": 57893760723.15269,
+            "2019": 53737105131.05253,
+            "2020": 56723858162.793816,
+            "2021": 94456319832.97774,
+            "2022": 100082877097.97401,
+            "2023": 97476836665.61159,
+            "2024": 93531805288.09167,
+            "2025": 112280891892.50276
+          },
+          "owner_fcff_by_year": {
+            "2016": 50601303266.24609,
+            "2017": 49074072670.17548,
+            "2018": 62118707349.28744,
+            "2019": 57762240669.97673,
+            "2020": 72636447073.12585,
+            "2021": 92790917438.74036,
+            "2022": 111529771472.1895,
+            "2023": 99733803579.34602,
+            "2024": 108807000000.0,
+            "2025": 98767000000.0
+          },
+          "annual_bridge_by_year": {
+            "2016": {
+              "cfo": 66231000000.0,
+              "gross_capex": 13548000000.0,
+              "interest_expense": 1456000000.0,
+              "interest_income": 3999000000.0,
+              "owner_fcff": 50601303266.24609
+            },
+            "2017": {
+              "cfo": 64225000000.0,
+              "gross_capex": 12795000000.0,
+              "interest_expense": 2323000000.0,
+              "interest_income": 5201000000.0,
+              "owner_fcff": 49074072670.17548
+            },
+            "2018": {
+              "cfo": 77434000000.0,
+              "gross_capex": 13313000000.0,
+              "interest_expense": 3240000000.0,
+              "interest_income": 5686000000.0,
+              "owner_fcff": 62118707349.28744
+            },
+            "2019": {
+              "cfo": 69391000000.0,
+              "gross_capex": 10495000000.0,
+              "interest_expense": 3576000000.0,
+              "interest_income": 4961000000.0,
+              "owner_fcff": 57762240669.97673
+            },
+            "2020": {
+              "cfo": 80674000000.0,
+              "gross_capex": 7309000000.0,
+              "interest_expense": 2873000000.0,
+              "interest_income": 3763000000.0,
+              "owner_fcff": 72636447073.12585
+            },
+            "2021": {
+              "cfo": 104038000000.0,
+              "gross_capex": 11085000000.0,
+              "interest_expense": 2645000000.0,
+              "interest_income": 2843000000.0,
+              "owner_fcff": 92790917438.74036
+            },
+            "2022": {
+              "cfo": 122151000000.0,
+              "gross_capex": 10708000000.0,
+              "interest_expense": 2931000000.0,
+              "interest_income": 2825000000.0,
+              "owner_fcff": 111529771472.1895
+            },
+            "2023": {
+              "cfo": 110543000000.0,
+              "gross_capex": 10959000000.0,
+              "interest_expense": 3933000000.0,
+              "interest_income": 3750000000.0,
+              "owner_fcff": 99733803579.34602
+            },
+            "2024": {
+              "cfo": 118254000000.0,
+              "gross_capex": 9447000000.0,
+              "interest_expense": 0.0,
+              "interest_income": 0.0,
+              "owner_fcff": 108807000000.0
+            },
+            "2025": {
+              "cfo": 111482000000.0,
+              "gross_capex": 12715000000.0,
+              "interest_expense": 0.0,
+              "interest_income": 0.0,
+              "owner_fcff": 98767000000.0
+            }
+          },
+          "historical_cagrs": {
+            "revenue_3y": {
+              "status": "ready",
+              "value": 0.0181,
+              "start_year": "2022",
+              "end_year": "2025",
+              "period_years": 3
+            },
+            "revenue_5y": {
+              "status": "ready",
+              "value": 0.0868,
+              "start_year": "2020",
+              "end_year": "2025",
+              "period_years": 5
+            },
+            "nopat_3y": {
+              "status": "ready",
+              "value": 0.0391,
+              "start_year": "2022",
+              "end_year": "2025",
+              "period_years": 3
+            },
+            "nopat_5y": {
+              "status": "ready",
+              "value": 0.1463,
+              "start_year": "2020",
+              "end_year": "2025",
+              "period_years": 5
+            },
+            "fcff_3y": {
+              "status": "ready",
+              "value": -0.0397,
+              "start_year": "2022",
+              "end_year": "2025",
+              "period_years": 3
+            },
+            "fcff_5y": {
+              "status": "ready",
+              "value": 0.0634,
+              "start_year": "2020",
+              "end_year": "2025",
+              "period_years": 5
+            }
+          },
+          "conservative_floor_key": "fcff_3y",
+          "conservative_floor_cagr": -0.0397,
+          "primary_fcff_key": "fcff_5y",
+          "primary_fcff_cagr": 0.0634
+        }
+      },
+      "expected": {
+        "observed_legacy_output": {
+          "owner_fcff": 98767000000.0,
+          "operating_ev": 4718124932360.0,
+          "owner_fcff_yield": 0.0209,
+          "implied_owner_fcff_cagr_5y": 0.4229,
+          "historical_cagrs": {
+            "revenue_3y": {
+              "status": "ready",
+              "value": 0.0181,
+              "start_year": "2022",
+              "end_year": "2025",
+              "period_years": 3
+            },
+            "revenue_5y": {
+              "status": "ready",
+              "value": 0.0868,
+              "start_year": "2020",
+              "end_year": "2025",
+              "period_years": 5
+            },
+            "nopat_3y": {
+              "status": "ready",
+              "value": 0.0391,
+              "start_year": "2022",
+              "end_year": "2025",
+              "period_years": 3
+            },
+            "nopat_5y": {
+              "status": "ready",
+              "value": 0.1463,
+              "start_year": "2020",
+              "end_year": "2025",
+              "period_years": 5
+            },
+            "fcff_3y": {
+              "status": "ready",
+              "value": -0.0395,
+              "start_year": "2022",
+              "end_year": "2025",
+              "period_years": 3
+            },
+            "fcff_5y": {
+              "status": "ready",
+              "value": 0.0613,
+              "start_year": "2020",
+              "end_year": "2025",
+              "period_years": 5
+            }
+          },
+          "pressure_label": "high_pressure",
+          "valuation_status": "ready"
+        },
+        "semantic_expected_receipt": {
+          "schema_version": "valuation_scan_terminal_receipt_v2",
+          "terminal": true,
+          "execution_status": "completed",
+          "ok": true,
+          "status": "ready",
+          "refreshed": false,
+          "valuation_status": "ready",
+          "symbol": "AAPL",
+          "company_name": "Apple Inc.",
+          "market": "US",
+          "analysis_currency": "USD",
+          "basis": {
+            "owner_fcff": "latest_complete_annual",
+            "period_end": "2025-09-27"
+          },
+          "pressure": {
+            "status": "ready",
+            "label": "high_pressure"
+          },
+          "implied": {
+            "owner_fcff_cagr_5y": 0.4229,
+            "solver_status": "solved",
+            "hurdle_rate": 0.1,
+            "terminal_growth": 0.0,
+            "explicit_years": 5
+          },
+          "owner_fcff": 98767000000.0,
+          "owner_fcff_yield": 0.0209,
+          "operating_ev": 4718124932360.0,
+          "historical_summary": {
+            "historical_cagrs": {
+              "revenue_3y": {
+                "status": "ready",
+                "value": 0.0181,
+                "start_year": "2022",
+                "end_year": "2025",
+                "period_years": 3
+              },
+              "revenue_5y": {
+                "status": "ready",
+                "value": 0.0868,
+                "start_year": "2020",
+                "end_year": "2025",
+                "period_years": 5
+              },
+              "nopat_3y": {
+                "status": "ready",
+                "value": 0.0391,
+                "start_year": "2022",
+                "end_year": "2025",
+                "period_years": 3
+              },
+              "nopat_5y": {
+                "status": "ready",
+                "value": 0.1463,
+                "start_year": "2020",
+                "end_year": "2025",
+                "period_years": 5
+              },
+              "fcff_3y": {
+                "status": "ready",
+                "value": -0.0395,
+                "start_year": "2022",
+                "end_year": "2025",
+                "period_years": 3
+              },
+              "fcff_5y": {
+                "status": "ready",
+                "value": 0.0613,
+                "start_year": "2020",
+                "end_year": "2025",
+                "period_years": 5
+              }
+            },
+            "conservative_floor_key": "fcff_3y",
+            "conservative_floor_cagr": -0.0395,
+            "gap_to_conservative_floor_cagr": 0.4624
+          },
+          "missing_inputs": [],
+          "warnings": [],
+          "presentation": {
+            "format": "plain_text_v1",
+            "locale": "zh-CN",
+            "text": "Apple Inc.（AAPL）\n压力标签：high_pressure\nOwner FCFF：98767000000.0；Operating EV：4718124932360.0；Yield：0.0209\n隐含五年 Owner FCFF CAGR：0.4229\n历史最低有效 CAGR：fcff_3y=-0.0395；gap=0.4624\n估值尺：5 年 / 10% 折现率 / 0% 终值增长率"
+          }
+        },
+        "legacy_vs_current_formula_difference": true
+      },
+      "evidence_labels": [
+        "FMP annual normalized rows",
+        "market snapshot",
+        "indicator artifact",
+        "TTM artifact if present"
+      ],
+      "notes": [
+        "The expected receipt preserves the observed legacy indicator output.",
+        "canonical_spec_recomputed is calculated from the current semantic formula and exposes version drift rather than hiding it."
+      ]
+    },
+    {
+      "symbol": "MSFT",
+      "market": "US",
+      "fixture_status": "ready",
+      "data_as_of": "2026-06-30",
+      "identity": {
+        "symbol": "MSFT",
+        "company_name": "Microsoft Corporation",
+        "currency": "USD",
+        "analysis_currency": "USD"
+      },
+      "raw_inputs": {
+        "annual_financials": {
+          "2021": {
+            "revenue": 168088000000.0,
+            "operating_income": 69916000000.0,
+            "income_tax_expense": 9831000000.0,
+            "income_before_tax": 71102000000.0,
+            "cfo": 76740000000.0,
+            "capex": 20622000000.0,
+            "interest_expense": 2346000000.0,
+            "interest_income": 2131000000.0,
+            "period_end": "2021-06-30"
+          },
+          "2022": {
+            "revenue": 198270000000.0,
+            "operating_income": 83383000000.0,
+            "income_tax_expense": 10978000000.0,
+            "income_before_tax": 83716000000.0,
+            "cfo": 89035000000.0,
+            "capex": 23886000000.0,
+            "interest_expense": 2063000000.0,
+            "interest_income": 2094000000.0,
+            "period_end": "2022-06-30"
+          },
+          "2023": {
+            "revenue": 211915000000.0,
+            "operating_income": 88523000000.0,
+            "income_tax_expense": 16950000000.0,
+            "income_before_tax": 89311000000.0,
+            "cfo": 87582000000.0,
+            "capex": 28107000000.0,
+            "interest_expense": 1968000000.0,
+            "interest_income": 2994000000.0,
+            "period_end": "2023-06-30"
+          },
+          "2024": {
+            "revenue": 245122000000.0,
+            "operating_income": 109433000000.0,
+            "income_tax_expense": 19651000000.0,
+            "income_before_tax": 107787000000.0,
+            "cfo": 118548000000.0,
+            "capex": 44477000000.0,
+            "interest_expense": 2935000000.0,
+            "interest_income": 3157000000.0,
+            "period_end": "2024-06-30"
+          },
+          "2025": {
+            "revenue": 281724000000.0,
+            "operating_income": 128528000000.0,
+            "income_tax_expense": 21795000000.0,
+            "income_before_tax": 123627000000.0,
+            "cfo": 136162000000.0,
+            "capex": 64551000000.0,
+            "interest_expense": 2385000000.0,
+            "interest_income": 2647000000.0,
+            "period_end": "2025-06-30"
+          },
+          "2026": {
+            "revenue": 331839000000.0,
+            "operating_income": 155237000000.0,
+            "income_tax_expense": 32185000000.0,
+            "income_before_tax": 165934000000.0,
+            "cfo": 182935000000.0,
+            "capex": 115948000000.0,
+            "interest_expense": 3051000000.0,
+            "interest_income": 3301000000.0,
+            "period_end": "2026-06-30"
+          }
+        },
+        "latest_balance_sheet": {
+          "total_debt": 128808300000.0,
+          "cash_and_equivalents": 20935000000.0,
+          "short_term_investments": 55908000000.0,
+          "minority_interest": 0.0,
+          "preferred_stock": 0.0,
+          "lease_liabilities": 88514300000.0
+        },
+        "market_snapshot": {
+          "price": 464.72,
+          "market_cap": 3450801596000.0,
+          "shares_outstanding": 7425550000,
+          "price_date_from_snapshot": "2026-08-01",
+          "currency": "USD",
+          "analysis_currency": "USD"
+        },
+        "units": {
+          "amounts": "USD",
+          "shares": "shares",
+          "price": "USD/share"
+        }
+      },
+      "calculation_intermediates": {
+        "source_indicator_version": "prescreen_valuation_v2",
+        "legacy_q6": {
+          "source_years": {
+            "current_year": "2026",
+            "market_data_as_of": "MISSING",
+            "ev_balance_sheet_year": "2026",
+            "normalized_nopat_source": "median_nopat_history",
+            "normalized_nopat_year": null,
+            "normalized_nopat_years": [
+              "2017",
+              "2018",
+              "2019",
+              "2020",
+              "2021",
+              "2022",
+              "2023",
+              "2024",
+              "2025",
+              "2026"
+            ],
+            "fcff_year": "2026"
+          },
+          "owner_fcff_components": {
+            "cfo": 182935000000.0,
+            "gross_capex_deducted": 115948000000.0,
+            "interest_expense": 3051000000.0,
+            "after_tax_interest_expense_added_back": 2489005800.0,
+            "interest_income": 3301000000.0,
+            "after_tax_interest_income_deducted": 2692955800.0,
+            "tax_rate_used": 0.1842
+          },
+          "operating_ev_components": {
+            "market_cap": 3450801596000.0,
+            "total_debt": 128808300000.0,
+            "minority_interest": 0.0,
+            "preferred_stock": 0.0,
+            "perpetual_instruments": 0.0,
+            "lease_liabilities_separately_added": 0.0,
+            "total_debt_treatment": "fmp_total_debt_trusted_as_reported",
+            "broad_financial_assets_deducted": 76843000000.0
+          }
+        },
+        "canonical_spec_recomputed": {
+          "owner_fcff": 66783047697.1608,
+          "operating_ev": 3502766896000.0,
+          "owner_fcff_yield": 0.0191,
+          "implied_owner_fcff_cagr_5y": 0.4518,
+          "historical_cagrs": {
+            "revenue_3y": {
+              "status": "ready",
+              "value": 0.1612,
+              "start_year": "2023",
+              "end_year": "2026",
+              "period_years": 3
+            },
+            "revenue_5y": {
+              "status": "ready",
+              "value": 0.1457,
+              "start_year": "2021",
+              "end_year": "2026",
+              "period_years": 5
+            },
+            "nopat_3y": {
+              "status": "ready",
+              "value": 0.2038,
+              "start_year": "2023",
+              "end_year": "2026",
+              "period_years": 3
+            },
+            "nopat_5y": {
+              "status": "ready",
+              "value": 0.1574,
+              "start_year": "2021",
+              "end_year": "2026",
+              "period_years": 5
+            },
+            "fcff_3y": {
+              "status": "ready",
+              "value": 0.0443,
+              "start_year": "2023",
+              "end_year": "2026",
+              "period_years": 3
+            },
+            "fcff_5y": {
+              "status": "ready",
+              "value": 0.0348,
+              "start_year": "2021",
+              "end_year": "2026",
+              "period_years": 5
+            }
+          },
+          "conservative_floor_key": "fcff_5y",
+          "conservative_floor_cagr": 0.0348,
+          "gap_to_floor": 0.417,
+          "pressure_label": "high_pressure",
+          "valuation_status": "ready"
+        },
+        "canonical_detail": {
+          "tax_rate_by_year": {
+            "2017": {
+              "raw_tax_rate": 0.14755359352530015,
+              "effective_tax_rate": 0.14755359352530015
+            },
+            "2018": {
+              "raw_tax_rate": 0.5456763722103416,
+              "effective_tax_rate": 0.5
+            },
+            "2019": {
+              "raw_tax_rate": 0.10181285478850027,
+              "effective_tax_rate": 0.10181285478850027
+            },
+            "2020": {
+              "raw_tax_rate": 0.16507655177615205,
+              "effective_tax_rate": 0.16507655177615205
+            },
+            "2021": {
+              "raw_tax_rate": 0.13826615285083402,
+              "effective_tax_rate": 0.13826615285083402
+            },
+            "2022": {
+              "raw_tax_rate": 0.13113383343685794,
+              "effective_tax_rate": 0.13113383343685794
+            },
+            "2023": {
+              "raw_tax_rate": 0.18978625253328257,
+              "effective_tax_rate": 0.18978625253328257
+            },
+            "2024": {
+              "raw_tax_rate": 0.18231326597827197,
+              "effective_tax_rate": 0.18231326597827197
+            },
+            "2025": {
+              "raw_tax_rate": 0.17629644009803683,
+              "effective_tax_rate": 0.17629644009803683
+            },
+            "2026": {
+              "raw_tax_rate": 0.19396265985271252,
+              "effective_tax_rate": 0.19396265985271252
+            }
+          },
+          "tax_rate_used_unrounded": 0.18419078864300711,
+          "tax_rate_used_selected_years": [
+            "2024",
+            "2025",
+            "2026"
+          ],
+          "nopat_by_year": {
+            "2017": 24742256947.92816,
+            "2018": 17529000000.0,
+            "2019": 38585221571.140816,
+            "2020": 44216710894.48676,
+            "2021": 60248983657.28109,
+            "2022": 72448667566.53447,
+            "2023": 71722551566.99623,
+            "2024": 89481912364.19975,
+            "2025": 105868971147.07953,
+            "2026": 125126818572.44446
+          },
+          "owner_fcff_by_year": {
+            "2017": 32059200691.48309,
+            "2018": 32675404980.694283,
+            "2019": 38197998499.93687,
+            "2020": 45161392980.189224,
+            "2021": 56293398980.44176,
+            "2022": 65123709914.44794,
+            "2023": 58637979749.14773,
+            "2024": 73889890355.07875,
+            "2025": 71397257986.62447,
+            "2026": 66783047697.16076
+          },
+          "annual_bridge_by_year": {
+            "2017": {
+              "cfo": 39507000000.0,
+              "gross_capex": 8129000000.0,
+              "interest_expense": 2222000000.0,
+              "interest_income": 1387000000.0,
+              "owner_fcff": 32059200691.48309
+            },
+            "2018": {
+              "cfo": 43884000000.0,
+              "gross_capex": 11632000000.0,
+              "interest_expense": 2733000000.0,
+              "interest_income": 2214000000.0,
+              "owner_fcff": 32675404980.694283
+            },
+            "2019": {
+              "cfo": 52185000000.0,
+              "gross_capex": 13925000000.0,
+              "interest_expense": 2686000000.0,
+              "interest_income": 2762000000.0,
+              "owner_fcff": 38197998499.93687
+            },
+            "2020": {
+              "cfo": 60675000000.0,
+              "gross_capex": 15441000000.0,
+              "interest_expense": 2591000000.0,
+              "interest_income": 2680000000.0,
+              "owner_fcff": 45161392980.189224
+            },
+            "2021": {
+              "cfo": 76740000000.0,
+              "gross_capex": 20622000000.0,
+              "interest_expense": 2346000000.0,
+              "interest_income": 2131000000.0,
+              "owner_fcff": 56293398980.44176
+            },
+            "2022": {
+              "cfo": 89035000000.0,
+              "gross_capex": 23886000000.0,
+              "interest_expense": 2063000000.0,
+              "interest_income": 2094000000.0,
+              "owner_fcff": 65123709914.44794
+            },
+            "2023": {
+              "cfo": 87582000000.0,
+              "gross_capex": 28107000000.0,
+              "interest_expense": 1968000000.0,
+              "interest_income": 2994000000.0,
+              "owner_fcff": 58637979749.14773
+            },
+            "2024": {
+              "cfo": 118548000000.0,
+              "gross_capex": 44477000000.0,
+              "interest_expense": 2935000000.0,
+              "interest_income": 3157000000.0,
+              "owner_fcff": 73889890355.07875
+            },
+            "2025": {
+              "cfo": 136162000000.0,
+              "gross_capex": 64551000000.0,
+              "interest_expense": 2385000000.0,
+              "interest_income": 2647000000.0,
+              "owner_fcff": 71397257986.62447
+            },
+            "2026": {
+              "cfo": 182935000000.0,
+              "gross_capex": 115948000000.0,
+              "interest_expense": 3051000000.0,
+              "interest_income": 3301000000.0,
+              "owner_fcff": 66783047697.16076
+            }
+          },
+          "historical_cagrs": {
+            "revenue_3y": {
+              "status": "ready",
+              "value": 0.1612,
+              "start_year": "2023",
+              "end_year": "2026",
+              "period_years": 3
+            },
+            "revenue_5y": {
+              "status": "ready",
+              "value": 0.1457,
+              "start_year": "2021",
+              "end_year": "2026",
+              "period_years": 5
+            },
+            "nopat_3y": {
+              "status": "ready",
+              "value": 0.2038,
+              "start_year": "2023",
+              "end_year": "2026",
+              "period_years": 3
+            },
+            "nopat_5y": {
+              "status": "ready",
+              "value": 0.1574,
+              "start_year": "2021",
+              "end_year": "2026",
+              "period_years": 5
+            },
+            "fcff_3y": {
+              "status": "ready",
+              "value": 0.0443,
+              "start_year": "2023",
+              "end_year": "2026",
+              "period_years": 3
+            },
+            "fcff_5y": {
+              "status": "ready",
+              "value": 0.0348,
+              "start_year": "2021",
+              "end_year": "2026",
+              "period_years": 5
+            }
+          },
+          "conservative_floor_key": "fcff_5y",
+          "conservative_floor_cagr": 0.0348,
+          "primary_fcff_key": "fcff_3y",
+          "primary_fcff_cagr": 0.0443
+        }
+      },
+      "expected": {
+        "observed_legacy_output": {
+          "owner_fcff": 66783050000.0,
+          "operating_ev": 3502766896000.0,
+          "owner_fcff_yield": 0.0191,
+          "implied_owner_fcff_cagr_5y": 0.4518,
+          "historical_cagrs": {
+            "revenue_3y": {
+              "status": "ready",
+              "value": 0.1612,
+              "start_year": "2023",
+              "end_year": "2026",
+              "period_years": 3
+            },
+            "revenue_5y": {
+              "status": "ready",
+              "value": 0.1457,
+              "start_year": "2021",
+              "end_year": "2026",
+              "period_years": 5
+            },
+            "nopat_3y": {
+              "status": "ready",
+              "value": 0.2038,
+              "start_year": "2023",
+              "end_year": "2026",
+              "period_years": 3
+            },
+            "nopat_5y": {
+              "status": "ready",
+              "value": 0.1574,
+              "start_year": "2021",
+              "end_year": "2026",
+              "period_years": 5
+            },
+            "fcff_3y": {
+              "status": "ready",
+              "value": 0.0443,
+              "start_year": "2023",
+              "end_year": "2026",
+              "period_years": 3
+            },
+            "fcff_5y": {
+              "status": "ready",
+              "value": 0.0348,
+              "start_year": "2021",
+              "end_year": "2026",
+              "period_years": 5
+            }
+          },
+          "pressure_label": "high_pressure",
+          "valuation_status": "ready"
+        },
+        "semantic_expected_receipt": {
+          "schema_version": "valuation_scan_terminal_receipt_v2",
+          "terminal": true,
+          "execution_status": "completed",
+          "ok": true,
+          "status": "ready",
+          "refreshed": false,
+          "valuation_status": "ready",
+          "symbol": "MSFT",
+          "company_name": "Microsoft Corporation",
+          "market": "US",
+          "analysis_currency": "USD",
+          "basis": {
+            "owner_fcff": "latest_complete_annual",
+            "period_end": "2026-06-30"
+          },
+          "pressure": {
+            "status": "ready",
+            "label": "high_pressure"
+          },
+          "implied": {
+            "owner_fcff_cagr_5y": 0.4518,
+            "solver_status": "solved",
+            "hurdle_rate": 0.1,
+            "terminal_growth": 0.0,
+            "explicit_years": 5
+          },
+          "owner_fcff": 66783050000.0,
+          "owner_fcff_yield": 0.0191,
+          "operating_ev": 3502766896000.0,
+          "historical_summary": {
+            "historical_cagrs": {
+              "revenue_3y": {
+                "status": "ready",
+                "value": 0.1612,
+                "start_year": "2023",
+                "end_year": "2026",
+                "period_years": 3
+              },
+              "revenue_5y": {
+                "status": "ready",
+                "value": 0.1457,
+                "start_year": "2021",
+                "end_year": "2026",
+                "period_years": 5
+              },
+              "nopat_3y": {
+                "status": "ready",
+                "value": 0.2038,
+                "start_year": "2023",
+                "end_year": "2026",
+                "period_years": 3
+              },
+              "nopat_5y": {
+                "status": "ready",
+                "value": 0.1574,
+                "start_year": "2021",
+                "end_year": "2026",
+                "period_years": 5
+              },
+              "fcff_3y": {
+                "status": "ready",
+                "value": 0.0443,
+                "start_year": "2023",
+                "end_year": "2026",
+                "period_years": 3
+              },
+              "fcff_5y": {
+                "status": "ready",
+                "value": 0.0348,
+                "start_year": "2021",
+                "end_year": "2026",
+                "period_years": 5
+              }
+            },
+            "conservative_floor_key": "fcff_5y",
+            "conservative_floor_cagr": 0.0348,
+            "gap_to_conservative_floor_cagr": 0.417
+          },
+          "missing_inputs": [],
+          "warnings": [],
+          "presentation": {
+            "format": "plain_text_v1",
+            "locale": "zh-CN",
+            "text": "Microsoft Corporation（MSFT）\n压力标签：high_pressure\nOwner FCFF：66783050000.0；Operating EV：3502766896000.0；Yield：0.0191\n隐含五年 Owner FCFF CAGR：0.4518\n历史最低有效 CAGR：fcff_5y=0.0348；gap=0.417\n估值尺：5 年 / 10% 折现率 / 0% 终值增长率"
+          }
+        },
+        "legacy_vs_current_formula_difference": true
+      },
+      "evidence_labels": [
+        "FMP annual normalized rows",
+        "market snapshot",
+        "indicator artifact",
+        "TTM artifact if present"
+      ],
+      "notes": [
+        "The expected receipt preserves the observed legacy indicator output.",
+        "canonical_spec_recomputed is calculated from the current semantic formula and exposes version drift rather than hiding it."
+      ]
+    },
+    {
+      "symbol": "600519.SH",
+      "market": "CN_A",
+      "fixture_status": "partial_provenance",
+      "data_as_of": "2026-07-31",
+      "identity": {
+        "symbol": "600519.SH",
+        "company_name": "贵州茅台",
+        "currency": "CNY",
+        "analysis_currency": "CNY"
+      },
+      "raw_inputs": {
+        "source_kind": "indicator_snapshot_derived_inputs_only",
+        "source_periods": {
+          "fcff_period_end": "2026-03-31",
+          "fcff_basis": "TTM",
+          "latest_balance_period": "2026-03-31",
+          "quote_trade_date": "2026-07-31",
+          "quote_source_mode": "tencent_individual_quote",
+          "quote_fetched_at": "2026-08-01T13:14:42+00:00"
+        },
+        "owner_fcff_components": {
+          "cfo": 79622900612.09999,
+          "construct_long_asset": 2831282151.49,
+          "formula": "NETCASH_OPERATE - CONSTRUCT_LONG_ASSET",
+          "ttm_bridge": {
+            "latest_ytd_period": "2026-03-31",
+            "latest_ytd_cfo": 26909891269.13,
+            "latest_ytd_construct_long_asset": 604791583.89,
+            "prior_fy_period": "2025-12-31",
+            "prior_fy_cfo": 61522204989.35,
+            "prior_fy_construct_long_asset": 3127594916.41,
+            "prior_same_ytd_period": "2025-03-31",
+            "prior_same_ytd_cfo": 8809195646.38,
+            "prior_same_ytd_construct_long_asset": 901104348.81,
+            "formula": "latest_ytd + prior_fy - prior_same_ytd"
+          }
+        },
+        "ev_components": {
+          "market_cap": 1688359999999.9998,
+          "market_cap_basis": "akshare_total_market_cap",
+          "market_cap_legs": {},
+          "raw_price_cny": 1350.6,
+          "total_shares": null,
+          "total_shares_field": null,
+          "share_count_source": null,
+          "share_count_as_of": null,
+          "total_debt": 53309216.0,
+          "debt_components": {
+            "short_term_borrowings": 0.0,
+            "current_noncurrent_liabilities": 53309216.0,
+            "long_term_borrowings": 0.0,
+            "bonds_payable": 0.0,
+            "short_term_bonds": 0.0,
+            "short_term_financing_payable": 0.0
+          },
+          "lease_liabilities": 189112340.75,
+          "nci": 10241850759.42,
+          "preferred_stock": 0.0,
+          "perpetual_instruments": 0.0,
+          "cash_like_assets": 48786691397.55,
+          "cash_like_components": {
+            "cash": 48786691397.55,
+            "trading_financial_assets": 0.0,
+            "other_current_financial_assets": 0.0
+          },
+          "operating_ev": 1650057580918.6196,
+          "field_sources": {
+            "short_term_borrowings": null,
+            "current_noncurrent_liabilities": "NONCURRENT_LIAB_1YEAR",
+            "long_term_borrowings": null,
+            "bonds_payable": null,
+            "short_term_bonds": null,
+            "short_term_financing_payable": null,
+            "lease_liabilities": "LEASE_LIAB",
+            "nci": "MINORITY_EQUITY",
+            "preferred_stock": null,
+            "perpetual_instruments": null,
+            "cash": "MONETARYFUNDS",
+            "trading_financial_assets": null,
+            "other_current_financial_assets": null
+          },
+          "missing_inputs": [],
+          "notes": [
+            "assumed_zero:short_term_borrowings",
+            "assumed_zero:long_term_borrowings",
+            "assumed_zero:bonds_payable",
+            "assumed_zero:short_term_bonds",
+            "assumed_zero:short_term_financing_payable",
+            "assumed_zero:preferred_stock",
+            "assumed_zero:perpetual_instruments",
+            "assumed_zero:trading_financial_assets",
+            "assumed_zero:other_current_financial_assets"
+          ]
+        },
+        "valuation_parameters": {
+          "hurdle_rate": 0.1,
+          "terminal_growth": 0.0,
+          "explicit_years": 5
+        },
+        "historical_available": {
+          "fcff_3y": 0.2298468444787214,
+          "fcff_5y": 0.03327155972916218,
+          "revenue_3y": null,
+          "revenue_5y": null,
+          "nopat_3y": null,
+          "nopat_5y": null
+        }
+      },
+      "calculation_intermediates": {
+        "ttm_bridge": {
+          "latest_ytd_period": "2026-03-31",
+          "latest_ytd_cfo": 26909891269.13,
+          "latest_ytd_construct_long_asset": 604791583.89,
+          "prior_fy_period": "2025-12-31",
+          "prior_fy_cfo": 61522204989.35,
+          "prior_fy_construct_long_asset": 3127594916.41,
+          "prior_same_ytd_period": "2025-03-31",
+          "prior_same_ytd_cfo": 8809195646.38,
+          "prior_same_ytd_construct_long_asset": 901104348.81,
+          "formula": "latest_ytd + prior_fy - prior_same_ytd"
+        },
+        "owner_fcff": 76791618460.60999,
+        "operating_ev": 1650057580918.6196,
+        "yield": 0.04653875073732795,
+        "reverse_dcf_solver": {
+          "status": "solved",
+          "value": 0.193773
+        },
+        "pressure": {
+          "status": "ready",
+          "pressure_label": "light",
+          "historical_fcff_cagrs": {
+            "fcff_3y": 0.2298468444787214,
+            "fcff_5y": 0.03327155972916218
+          },
+          "historical_reference": 0.2298468444787214,
+          "gap_to_historical_reference": -0.03607384447872139,
+          "basis": "reverse-DCF implied 5Y FCFF growth minus the higher available exact 3Y/5Y annual FCFF CAGR"
+        }
+      },
+      "expected": {
+        "observed_legacy_receipt": {
+          "schema_version": "valuation_scan_terminal_receipt_v2",
+          "terminal": true,
+          "execution_status": "completed",
+          "ok": true,
+          "status": "ready",
+          "refreshed": false,
+          "valuation_status": "ready",
+          "symbol": "600519.SH",
+          "company_name": "贵州茅台",
+          "market": "CN_A",
+          "analysis_currency": "CNY",
+          "basis": {
+            "owner_fcff": "TTM",
+            "period_end": "2026-03-31"
+          },
+          "pressure": {
+            "status": "ready",
+            "label": "light"
+          },
+          "implied": {
+            "owner_fcff_cagr_5y": 0.193773,
+            "solver_status": "solved",
+            "hurdle_rate": 0.1,
+            "terminal_growth": 0.0,
+            "explicit_years": 5
+          },
+          "owner_fcff": 76791618460.60999,
+          "owner_fcff_yield": 0.04653875073732795,
+          "operating_ev": 1650057580918.6196,
+          "historical_summary": {
+            "historical_cagrs": {
+              "revenue_3y": null,
+              "revenue_5y": null,
+              "nopat_3y": null,
+              "nopat_5y": null,
+              "fcff_3y": 0.2298468444787214,
+              "fcff_5y": 0.03327155972916218
+            },
+            "historical_reference": 0.2298468444787214,
+            "gap_to_historical_reference": -0.03607384447872139
+          },
+          "missing_inputs": [],
+          "warnings": [
+            "assumed_zero:short_term_borrowings",
+            "assumed_zero:long_term_borrowings",
+            "assumed_zero:bonds_payable",
+            "assumed_zero:short_term_bonds",
+            "assumed_zero:short_term_financing_payable",
+            "assumed_zero:preferred_stock",
+            "assumed_zero:perpetual_instruments",
+            "assumed_zero:trading_financial_assets",
+            "assumed_zero:other_current_financial_assets"
+          ],
+          "presentation": {
+            "format": "plain_text_v1",
+            "locale": "zh-CN",
+            "text": "贵州茅台（600519.SH）\n压力标签：light\nOwner FCFF：76791618460.60999；Operating EV：1650057580918.6196；Yield：0.04653875073732795\n隐含五年 Owner FCFF CAGR：0.193773\nTTM 截至：2026-03-31；历史 FCFF 3Y/5Y：{'fcff_3y': 0.2298468444787214, 'fcff_5y': 0.03327155972916218}\n估值尺：5 年 / 10% 折现率 / 0% 终值增长率"
+          }
+        },
+        "semantic_expected_receipt": {
+          "schema_version": "valuation_scan_terminal_receipt_v2",
+          "terminal": true,
+          "execution_status": "completed",
+          "ok": true,
+          "status": "ready",
+          "refreshed": false,
+          "valuation_status": "partial",
+          "symbol": "600519.SH",
+          "company_name": "贵州茅台",
+          "market": "CN_A",
+          "analysis_currency": "CNY",
+          "basis": {
+            "owner_fcff": "TTM",
+            "period_end": "2026-03-31"
+          },
+          "pressure": {
+            "status": "ready",
+            "label": "light"
+          },
+          "implied": {
+            "owner_fcff_cagr_5y": 0.193773,
+            "solver_status": "solved",
+            "hurdle_rate": 0.1,
+            "terminal_growth": 0.0,
+            "explicit_years": 5
+          },
+          "owner_fcff": 76791618460.60999,
+          "owner_fcff_yield": 0.04653875073732795,
+          "operating_ev": 1650057580918.6196,
+          "historical_summary": {
+            "historical_cagrs": {
+              "revenue_3y": null,
+              "revenue_5y": null,
+              "nopat_3y": null,
+              "nopat_5y": null,
+              "fcff_3y": 0.2298468444787214,
+              "fcff_5y": 0.03327155972916218
+            },
+            "historical_reference": 0.2298468444787214,
+            "gap_to_historical_reference": -0.03607384447872139,
+            "status": "partial_provenance"
+          },
+          "missing_inputs": [
+            "raw_annual_profit_rows",
+            "historical_revenue_cagrs",
+            "historical_nopat_cagrs"
+          ],
+          "warnings": [
+            "retained indicator has no raw annual profit history; Revenue/NOPAT CAGRs cannot be independently reproduced"
+          ],
+          "presentation": {
+            "format": "plain_text_v1",
+            "locale": "zh-CN",
+            "text": "贵州茅台（600519.SH）\n压力标签：light\nOwner FCFF：76791618460.60999；Operating EV：1650057580918.6196；Yield：0.04653875073732795\n隐含五年 Owner FCFF CAGR：0.193773\nTTM 截至：2026-03-31；历史 FCFF 3Y/5Y：{'fcff_3y': 0.2298468444787214, 'fcff_5y': 0.03327155972916218}\n估值尺：5 年 / 10% 折现率 / 0% 终值增长率"
+          }
+        }
+      },
+      "evidence_labels": [
+        "A-share indicator snapshot",
+        "retained TTM bridge values",
+        "retained EV components"
+      ],
+      "notes": [
+        "Raw Tushare/AKShare annual rows are not retained in the source material; do not claim full offline re-computation."
+      ]
+    },
+    {
+      "symbol": "000858.SZ",
+      "market": "CN_A",
+      "fixture_status": "partial",
+      "data_as_of": null,
+      "identity": {
+        "symbol": "000858.SZ",
+        "company_name": "UNKNOWN",
+        "currency": "UNKNOWN",
+        "analysis_currency": "CNY"
+      },
+      "raw_inputs": {
+        "status": "UNKNOWN",
+        "reason": "No original-project raw response, cache, fixture, indicator, report or test data was found for this symbol.",
+        "all_numeric_inputs": null
+      },
+      "calculation_intermediates": null,
+      "expected": {
+        "semantic_expected_receipt": {
+          "schema_version": "valuation_scan_terminal_receipt_v2",
+          "terminal": true,
+          "execution_status": "completed",
+          "ok": true,
+          "status": "partial",
+          "refreshed": false,
+          "valuation_status": "partial",
+          "symbol": "000858.SZ",
+          "company_name": "UNKNOWN",
+          "market": "CN_A",
+          "analysis_currency": "CNY",
+          "basis": {
+            "owner_fcff": "missing",
+            "period_end": null
+          },
+          "pressure": {
+            "status": "not_assessed",
+            "label": "not_assessed"
+          },
+          "implied": {
+            "owner_fcff_cagr_5y": null,
+            "solver_status": "invalid_inputs",
+            "hurdle_rate": 0.1,
+            "terminal_growth": 0.0,
+            "explicit_years": 5
+          },
+          "owner_fcff": null,
+          "owner_fcff_yield": null,
+          "operating_ev": null,
+          "historical_summary": {
+            "historical_cagrs": {
+              "revenue_3y": null,
+              "revenue_5y": null,
+              "nopat_3y": null,
+              "nopat_5y": null,
+              "fcff_3y": null,
+              "fcff_5y": null
+            },
+            "status": "not_assessed"
+          },
+          "missing_inputs": [
+            "identity_company_name",
+            "financial_periods",
+            "operating_cash_flow",
+            "long_term_construction_spending",
+            "market_price",
+            "market_cap",
+            "share_count",
+            "cash_balance",
+            "debt_components",
+            "historical_cagrs"
+          ],
+          "warnings": [
+            "no retained original-project fixture or snapshot for 000858.SZ"
+          ],
+          "presentation": {
+            "format": "plain_text_v1",
+            "locale": "zh-CN",
+            "text": "000858.SZ：缺少可核验的财务、市场价格、股数和历史序列，估值状态为 partial，pressure 未评估。"
+          }
+        }
+      },
+      "evidence_labels": [
+        "negative search result only"
+      ],
+      "notes": [
+        "This is not a synthetic substitute for another issuer."
+      ]
+    }
+  ]
+}
