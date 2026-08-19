@@ -1,6 +1,6 @@
 ---
 name: markdown-article
-description: Research and revise local Markdown articles for investment analysis by resolving author directives written as Markdown bold spans. Use when the user invokes markdown-article, @markdown-article, or $markdown-article; asks to start or continue revising an article with **...** directives; or requests L0 editing, /review independent review, or /roundtable red-blue verification in a Markdown article.
+description: Research and revise local Markdown articles by resolving author directives written as Markdown bold spans. Use when the user invokes markdown-article, @markdown-article, or $markdown-article; asks to start or continue revising an investment, tax, legal, business, or other research article with **...** directives; or requests L0 editing, /review independent review, or /roundtable red-blue verification in a Markdown article.
 ---
 
 # Markdown Article
@@ -46,6 +46,12 @@ article.research/
 - Keep sourcing proportionate rather than exhaustive. Distinguish fact, inference, and author opinion when the distinction matters.
 - Make the smallest coherent edit that answers the directive, while allowing broader revision when evidence changes the argument.
 - Preserve valid Markdown.
+
+### Heading spacing
+
+- Before returning control after editing an article, run `python -X utf8 -B scripts/normalize_heading_spacing.py --write "C:\path\article.md"`, resolving the script relative to this `SKILL.md`.
+- The script inserts exactly one blank line before and after each ATX heading outside fenced code, except at the start or end of the file. This is a structural formatting cleanup so downstream Markdown converters can recognize headings reliably.
+- Do not record this formatting-only cleanup in `notes.md`. The command is idempotent and must not turn malformed heading-like text into a heading.
 
 ### Minimal receipts
 

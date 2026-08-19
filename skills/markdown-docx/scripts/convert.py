@@ -14,6 +14,7 @@ import tempfile
 SKILL_ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_REFERENCE = SKILL_ROOT / "assets" / "reference-public.docx"
 AUTOFIT_SCRIPT = SKILL_ROOT / "scripts" / "autofit_tables.ps1"
+INLINE_CODE_FILTER = SKILL_ROOT / "scripts" / "inline_code_style.lua"
 
 
 def find_pandoc() -> Path:
@@ -74,6 +75,8 @@ def main() -> int:
         raise SystemExit(f"Reference DOCX does not exist: {DEFAULT_REFERENCE}")
     if not AUTOFIT_SCRIPT.is_file():
         raise SystemExit(f"Word table auto-fit script does not exist: {AUTOFIT_SCRIPT}")
+    if not INLINE_CODE_FILTER.is_file():
+        raise SystemExit(f"Inline-code filter does not exist: {INLINE_CODE_FILTER}")
 
     pandoc = find_pandoc()
     powershell = find_windows_powershell()
@@ -87,6 +90,8 @@ def main() -> int:
             str(pandoc),
             "--from=markdown",
             "--to=docx",
+            "--lua-filter",
+            str(INLINE_CODE_FILTER),
             "--reference-doc",
             str(DEFAULT_REFERENCE),
             "--output",
