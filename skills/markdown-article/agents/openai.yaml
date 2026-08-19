@@ -1,4 +1,4 @@
 interface:
   display_name: "Markdown Article"
-  short_description: "Research and revise analyst Markdown articles"
+  short_description: "Research and revise directive-marked Markdown articles"
   default_prompt: "Use $markdown-article to resolve the marked instructions in my Markdown article."
