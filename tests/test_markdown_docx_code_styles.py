@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import importlib.util
 import shutil
 import subprocess
 import tempfile
@@ -13,6 +14,13 @@ REPO = Path(__file__).parents[1]
 SKILL = REPO / "skills" / "markdown-docx"
 REFERENCE = SKILL / "assets" / "reference-public.docx"
 FILTER = SKILL / "scripts" / "inline_code_style.lua"
+CONVERTER_PATH = SKILL / "scripts" / "convert.py"
+CONVERTER_SPEC = importlib.util.spec_from_file_location(
+    "markdown_docx_convert", CONVERTER_PATH
+)
+assert CONVERTER_SPEC and CONVERTER_SPEC.loader
+CONVERTER = importlib.util.module_from_spec(CONVERTER_SPEC)
+CONVERTER_SPEC.loader.exec_module(CONVERTER)
 W = "http://schemas.openxmlformats.org/wordprocessingml/2006/main"
 
 
@@ -70,7 +78,7 @@ print("unchanged")
             subprocess.run(
                 [
                     self.pandoc,
-                    "--from=markdown",
+                    f"--from={CONVERTER.PANDOC_INPUT_FORMAT}",
                     "--to=docx",
                     "--lua-filter",
                     str(FILTER),
@@ -116,6 +124,64 @@ print("unchanged")
         self.assertEqual(properties.find(qn("bCs")).get(qn("val")), "0")
         self.assertEqual(properties.find(qn("sz")).get(qn("val")), "20")
         self.assertEqual(properties.find(qn("szCs")).get(qn("val")), "20")
+
+    def test_east_asian_soft_breaks_do_not_create_redundant_spaces(self) -> None:
+        source = (
+            """中文第一句。
+[《慈善法》](https://example.com)继续中文。
+OpenAI first
+OpenAI second
+中文
+OpenAI
+显式换行。"""
+            + "  \n"
+            + """下一行。
+
+```text
+借：长期股权投资——国龙医疗
+    贷：资本公积——股东资本性投入
+```
+"""
+        )
+        with tempfile.TemporaryDirectory() as temp_dir:
+            temp = Path(temp_dir)
+            markdown = temp / "fixture.md"
+            output = temp / "fixture.docx"
+            markdown.write_text(source, encoding="utf-8")
+            subprocess.run(
+                [
+                    self.pandoc,
+                    f"--from={CONVERTER.PANDOC_INPUT_FORMAT}",
+                    "--to=docx",
+                    "--lua-filter",
+                    str(FILTER),
+                    "--reference-doc",
+                    str(REFERENCE),
+                    "--output",
+                    str(output),
+                    str(markdown),
+                ],
+                check=True,
+            )
+
+            with zipfile.ZipFile(output) as package:
+                document = ET.fromstring(package.read("word/document.xml"))
+
+        paragraphs = document.findall(f".//{qn('p')}")
+        prose = next(p for p in paragraphs if "中文第一句" in paragraph_text(p))
+        text_block = next(p for p in paragraphs if "长期股权投资" in paragraph_text(p))
+
+        self.assertEqual(CONVERTER.PANDOC_INPUT_FORMAT, "markdown+east_asian_line_breaks")
+        self.assertEqual(
+            paragraph_text(prose),
+            "中文第一句。《慈善法》继续中文。 OpenAI first OpenAI second 中文 OpenAI"
+            " 显式换行。\n下一行。",
+        )
+        self.assertEqual(
+            paragraph_text(text_block),
+            "借：长期股权投资——国龙医疗\n    贷：资本公积——股东资本性投入",
+        )
+        self.assertIn("TextCodeBlock", run_styles(text_block))
 
 
 if __name__ == "__main__":

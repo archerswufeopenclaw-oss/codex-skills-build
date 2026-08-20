@@ -15,6 +15,7 @@ SKILL_ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_REFERENCE = SKILL_ROOT / "assets" / "reference-public.docx"
 AUTOFIT_SCRIPT = SKILL_ROOT / "scripts" / "autofit_tables.ps1"
 INLINE_CODE_FILTER = SKILL_ROOT / "scripts" / "inline_code_style.lua"
+PANDOC_INPUT_FORMAT = "markdown+east_asian_line_breaks"
 
 
 def find_pandoc() -> Path:
@@ -88,7 +89,7 @@ def main() -> int:
         staged_output = Path(temporary_directory) / output.name
         pandoc_command = [
             str(pandoc),
-            "--from=markdown",
+            f"--from={PANDOC_INPUT_FORMAT}",
             "--to=docx",
             "--lua-filter",
             str(INLINE_CODE_FILTER),
