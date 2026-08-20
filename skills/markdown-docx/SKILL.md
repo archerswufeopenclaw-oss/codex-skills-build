@@ -23,6 +23,7 @@ The converter:
 - runs from the Markdown file's directory so relative resources can resolve;
 - opens the generated DOCX with local Microsoft Word and applies `wdAutoFitContent` followed by `wdAutoFitWindow` to every table;
 - maps Markdown inline code (single-backtick text) through a small Pandoc filter to the template's `Inline Code Emphasis` style: 楷体, bold, 12 pt (小四);
+- maps fenced code blocks labeled `text` to the template's `Text Code Block` style: 楷体, regular weight, 10 pt, while preserving literal line breaks and leading spaces;
 - publishes the final output only after both Pandoc conversion and Word table adjustment succeed;
 - refuses silent overwrite and never changes the source Markdown.
 
@@ -34,7 +35,8 @@ After conversion:
 2. Confirm Chinese text, headings, paragraphs, lists, tables, and links are basically correct.
 3. Confirm tables fit the available page width after the content-then-window adjustment.
 4. Confirm there is no obvious garbling, missing content, overlap, or page-boundary overflow.
-5. When inline code is present, confirm it uses 楷体, bold, 12 pt (小四) while fenced code blocks retain the template's original `Verbatim Char` code formatting.
+5. When inline code is present, confirm it uses 楷体, bold, 12 pt (小四) while fenced blocks not labeled `text` retain their existing code formatting.
+6. When a fenced code block is labeled `text`, confirm it uses 楷体, regular weight, 10 pt and preserves its literal indentation; fenced blocks with other language labels must retain the original code formatting.
 
 Word's natural pagination, tables crossing pages, a short final page, and formatting errors already present in the Markdown are not converter defects.
 
