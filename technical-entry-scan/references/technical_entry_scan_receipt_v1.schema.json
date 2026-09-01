@@ -1,0 +1,156 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "technical_entry_scan_receipt_v1.schema.json",
+  "title": "Technical Entry Scan Terminal Receipt v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "terminal",
+    "execution_status",
+    "analysis_status",
+    "market",
+    "symbol",
+    "name",
+    "as_of",
+    "benchmark",
+    "indicators",
+    "synthesis",
+    "provenance",
+    "warnings",
+    "reason_codes",
+    "presentation"
+  ],
+  "properties": {
+    "schema_version": {"const": "technical_entry_scan_receipt_v1"},
+    "terminal": {"const": true},
+    "execution_status": {"enum": ["completed", "failed", "rejected"]},
+    "analysis_status": {"enum": ["ready", "partial", "not_assessed"]},
+    "market": {"const": "CN_A"},
+    "symbol": {"type": "string", "minLength": 1},
+    "name": {"type": ["string", "null"]},
+    "as_of": {"type": ["string", "null"], "format": "date"},
+    "benchmark": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["symbol", "name"],
+      "properties": {
+        "symbol": {"type": "string", "minLength": 1},
+        "name": {"type": ["string", "null"]}
+      }
+    },
+    "indicators": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ma250", "free_float_turnover", "relative_strength", "chip_pressure"],
+      "properties": {
+        "ma250": {"$ref": "#/$defs/ma250"},
+        "free_float_turnover": {"$ref": "#/$defs/freeTurnover"},
+        "relative_strength": {"$ref": "#/$defs/relativeStrength"},
+        "chip_pressure": {"$ref": "#/$defs/chipPressure"}
+      }
+    },
+    "synthesis": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["configuration", "observations", "non_inferences", "watch_items"],
+      "properties": {
+        "configuration": {"type": "string"},
+        "observations": {"type": "array", "items": {"type": "string"}},
+        "non_inferences": {"type": "array", "items": {"type": "string"}},
+        "watch_items": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["provider", "datasets", "retrieved_at", "adjustment"],
+      "properties": {
+        "provider": {"type": "string"},
+        "datasets": {"type": "array", "items": {"type": "string"}},
+        "retrieved_at": {"type": "string"},
+        "adjustment": {"type": "string"}
+      }
+    },
+    "warnings": {"type": "array", "items": {"type": "string"}},
+    "reason_codes": {"type": "array", "items": {"type": "string"}},
+    "presentation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["format", "locale", "text"],
+      "properties": {
+        "format": {"enum": ["markdown_v1", "plain_text_v1"]},
+        "locale": {"const": "zh-CN"},
+        "text": {"type": "string", "minLength": 1, "maxLength": 3500}
+      }
+    }
+  },
+  "$defs": {
+    "nullableNumber": {"type": ["number", "null"]},
+    "status": {"enum": ["ready", "not_assessed"]},
+    "ma250": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "close", "ma250", "gap_pct", "slope_20d_pct", "regime"],
+      "properties": {
+        "status": {"$ref": "#/$defs/status"},
+        "close": {"$ref": "#/$defs/nullableNumber"},
+        "ma250": {"$ref": "#/$defs/nullableNumber"},
+        "gap_pct": {"$ref": "#/$defs/nullableNumber"},
+        "slope_20d_pct": {"$ref": "#/$defs/nullableNumber"},
+        "regime": {"type": ["string", "null"]}
+      }
+    },
+    "freeTurnover": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "mean_5d_pct", "mean_20d_pct", "ratio_5d_to_20d", "mean_20d_history_percentile", "activity_state", "history_level"],
+      "properties": {
+        "status": {"$ref": "#/$defs/status"},
+        "mean_5d_pct": {"$ref": "#/$defs/nullableNumber"},
+        "mean_20d_pct": {"$ref": "#/$defs/nullableNumber"},
+        "ratio_5d_to_20d": {"$ref": "#/$defs/nullableNumber"},
+        "mean_20d_history_percentile": {"$ref": "#/$defs/nullableNumber"},
+        "activity_state": {"type": ["string", "null"]},
+        "history_level": {"type": ["string", "null"]}
+      }
+    },
+    "relativeStrength": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "benchmark_symbol", "excess_return_pct_points", "regime"],
+      "properties": {
+        "status": {"$ref": "#/$defs/status"},
+        "benchmark_symbol": {"type": "string"},
+        "excess_return_pct_points": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["20d", "60d", "250d"],
+          "properties": {
+            "20d": {"$ref": "#/$defs/nullableNumber"},
+            "60d": {"$ref": "#/$defs/nullableNumber"},
+            "250d": {"$ref": "#/$defs/nullableNumber"}
+          }
+        },
+        "regime": {"type": ["string", "null"]}
+      }
+    },
+    "chipPressure": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "method", "input_sessions", "winning_share_pct", "overhead_share_pct", "cost_50", "cost_85", "gap_to_cost_50_pct", "pressure_state", "assumptions"],
+      "properties": {
+        "status": {"$ref": "#/$defs/status"},
+        "method": {"enum": ["provider_distribution", "free_float_turnover_decay_v1", "unavailable"]},
+        "input_sessions": {"type": ["integer", "null"]},
+        "winning_share_pct": {"$ref": "#/$defs/nullableNumber"},
+        "overhead_share_pct": {"$ref": "#/$defs/nullableNumber"},
+        "cost_50": {"$ref": "#/$defs/nullableNumber"},
+        "cost_85": {"$ref": "#/$defs/nullableNumber"},
+        "gap_to_cost_50_pct": {"$ref": "#/$defs/nullableNumber"},
+        "pressure_state": {"type": ["string", "null"]},
+        "assumptions": {"type": "array", "items": {"type": "string"}}
+      }
+    }
+  }
+}
