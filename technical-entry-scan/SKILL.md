@@ -46,7 +46,7 @@ The public launcher is provider-neutral. Credentials and provider adapters stay 
 
 ## Chip-method boundary
 
-`chip_method` must be explicit:
+The chip method at `indicators.chip_pressure.method` must be explicit:
 
 - `provider_distribution`: a provider supplied a point-in-time distribution;
 - `free_float_turnover_decay_v1`: a deterministic estimate that decays an active free-float price distribution by daily free-float turnover and allocates each day's new chips across its adjusted trading range;
@@ -67,6 +67,7 @@ State both supporting and contradicting evidence. A low-turnover stock far below
 
 ## Output boundary
 
+- Treat [the public terminal-receipt schema](references/technical_entry_scan_receipt_v1.schema.json) as the machine-readable contract.
 - Present the executor's Chinese `markdown_v1` card and keep it concise.
 - Include symbol, data date, benchmark, all four methods/measurements, one combined interpretation, and explicit non-inferences.
 - Preserve `partial` or `not_assessed` when required data are missing. Do not treat null as zero or invent a peer/market comparison.
