@@ -4,7 +4,7 @@
 
 | Skill | 源目录 | 用途与依赖 |
 | --- | --- | --- |
-| markdown-article | `skills/markdown-article` | 按作者的 `**...**` 指令研究、修订文章；格式脚本仅依赖 Python 标准库 |
+| markdown-article | [skills/markdown-article](skills/markdown-article/README.md) | 按作者的 `**...**` 指令研究、修订文章；格式脚本仅依赖 Python 标准库 |
 | markdown-docx | `skills/markdown-docx` | Markdown 转 DOCX；需要 Windows、Pandoc、Microsoft Word 和 Windows PowerShell |
 | valuation-scan-public-router | `valuation-scan/router` | 证券识别和市场路由；启动器需要 Python 3.11+ 及已配置的私有执行器 |
 | valuation-scan-us | `valuation-scan/us` | 已核实美股标的的估值压力卡片契约 |
@@ -22,7 +22,7 @@ Markdown 两个 skill 使用下面的明确文件清单，避免把本地文章�
 $skillRoot = Join-Path $env:USERPROFILE '.agents/skills'
 $packages = @(
     @{ Name = 'markdown-article'; Source = 'skills/markdown-article'; Files = @(
-        'SKILL.md', 'agents/openai.yaml', 'scripts/_markdown_blocks.py',
+        'SKILL.md', 'README.md', 'agents/openai.yaml', 'scripts/_markdown_blocks.py',
         'scripts/align_markdown_tables.py', 'scripts/normalize_heading_spacing.py'
     ) },
     @{ Name = 'markdown-docx'; Source = 'skills/markdown-docx'; Files = @(
