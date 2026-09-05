@@ -56,6 +56,9 @@ def parse_args() -> argparse.Namespace:
 
 def main() -> int:
     args = parse_args()
+    if os.name != "nt":
+        raise SystemExit("Microsoft Word table auto-fit requires Windows.")
+
     source = args.input.expanduser().resolve()
     if not source.is_file():
         raise SystemExit(f"Input file does not exist: {source}")
@@ -91,6 +94,7 @@ def main() -> int:
             str(pandoc),
             f"--from={PANDOC_INPUT_FORMAT}",
             "--to=docx",
+            "--fail-if-warnings",
             "--lua-filter",
             str(INLINE_CODE_FILTER),
             "--reference-doc",
@@ -123,11 +127,16 @@ def main() -> int:
             failure_message="Microsoft Word table auto-fit failed",
         )
 
-        if output.exists() and not args.overwrite:
-            raise SystemExit(
-                f"Output appeared during conversion; refusing to replace it: {output}"
-            )
-        os.replace(staged_output, output)
+        if args.overwrite:
+            os.replace(staged_output, output)
+        else:
+            # Windows rename atomically fails if another writer created the target.
+            try:
+                os.rename(staged_output, output)
+            except FileExistsError:
+                raise SystemExit(
+                    f"Output appeared during conversion; refusing to replace it: {output}"
+                ) from None
 
     print(output)
     return 0

@@ -1,6 +1,6 @@
 ---
 name: valuation-scan-cn-a-ah
-description: Public contract for a fast A-share or A/H-listed non-financial valuation-pressure screen.
+description: Apply the A-share or A/H valuation-pressure contract for one verified non-financial issuer. Use after valuation-scan routing; verified A/H issuers require both A-price and H-price views.
 ---
 
 # A-share and A/H Valuation Scan: Public Contract

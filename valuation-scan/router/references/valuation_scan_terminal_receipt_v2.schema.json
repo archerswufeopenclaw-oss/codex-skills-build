@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "valuation_scan_terminal_receipt_v2",
+  "title": "Valuation Scan Terminal Receipt",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "terminal",
+    "execution_status",
+    "valuation_status",
+    "symbol",
+    "presentation"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "valuation_scan_terminal_receipt_v2"
+    },
+    "terminal": {
+      "const": true
+    },
+    "execution_status": {
+      "type": "string",
+      "enum": ["completed", "failed", "rejected"]
+    },
+    "valuation_status": {
+      "type": "string",
+      "minLength": 1
+    },
+    "data_status": {
+      "type": "string",
+      "enum": ["complete", "partial", "unavailable"]
+    },
+    "calculation_status": {
+      "type": "string",
+      "enum": ["solved", "unsolved", "partial", "not_run", "not_assessed"]
+    },
+    "reason_codes": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "uniqueItems": true
+    },
+    "refresh_requested": {
+      "type": "boolean"
+    },
+    "refreshed": {
+      "type": "boolean"
+    },
+    "data_mode": {
+      "type": "string",
+      "enum": ["live", "live_attempt", "mock", "none"]
+    },
+    "cache_status": {
+      "type": "string",
+      "enum": ["not_configured"]
+    },
+    "symbol": {
+      "type": "string",
+      "minLength": 1
+    },
+    "presentation": {
+      "type": "object",
+      "required": ["format", "locale", "text"],
+      "properties": {
+        "format": {
+          "type": "string",
+          "enum": ["plain_text_v1", "markdown_v1"]
+        },
+        "locale": {
+          "const": "zh-CN"
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 3500,
+          "pattern": "^(?!\\s*\\{)(?!.*(?:/Users/|\\.openclaw/workspace|schema_version|historical_fcff_series|recent_complete_fy_fcff_sequence))[\\s\\S]+$"
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}

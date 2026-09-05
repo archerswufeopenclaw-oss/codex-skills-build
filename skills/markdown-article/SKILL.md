@@ -1,6 +1,6 @@
 ---
 name: markdown-article
-description: Research and revise local Markdown articles by resolving author directives written as Markdown bold spans. Use when the user invokes markdown-article, @markdown-article, or $markdown-article; asks to start or continue revising an investment, tax, legal, business, or other research article with **...** directives; or requests L0 editing, /review independent review, or /roundtable red-blue verification in a Markdown article.
+description: Research and revise local Markdown articles using author directives in **...** spans. Use for markdown-article requests, directive-driven article editing, or /review and /roundtable review within an article.
 ---
 
 # Markdown Article
