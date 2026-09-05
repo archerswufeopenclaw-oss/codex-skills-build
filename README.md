@@ -5,7 +5,7 @@
 | Skill | 源目录 | 用途与依赖 |
 | --- | --- | --- |
 | markdown-article | [skills/markdown-article](skills/markdown-article/README.md) | 按作者的 `**...**` 指令研究、修订文章；格式脚本仅依赖 Python 标准库 |
-| markdown-docx | `skills/markdown-docx` | Markdown 转 DOCX；需要 Windows、Pandoc、Microsoft Word 和 Windows PowerShell |
+| markdown-docx | [skills/markdown-docx](skills/markdown-docx/README.md) | Markdown 转 DOCX；需要 Windows、Pandoc、Microsoft Word 和 Windows PowerShell |
 | valuation-scan-public-router | `valuation-scan/router` | 证券识别和市场路由；启动器需要 Python 3.11+ 及已配置的私有执行器 |
 | valuation-scan-us | `valuation-scan/us` | 已核实美股标的的估值压力卡片契约 |
 | valuation-scan-cn-a-ah | `valuation-scan/cn-a-ah` | 非金融 A 股及 A/H 公司的估值压力契约；A/H 必须展示两套价格 |
@@ -26,7 +26,7 @@ $packages = @(
         'scripts/align_markdown_tables.py', 'scripts/normalize_heading_spacing.py'
     ) },
     @{ Name = 'markdown-docx'; Source = 'skills/markdown-docx'; Files = @(
-        'SKILL.md', 'agents/openai.yaml', 'assets/reference-public.docx',
+        'SKILL.md', 'README.md', 'agents/openai.yaml', 'assets/reference-public.docx',
         'scripts/convert.py', 'scripts/autofit_tables.ps1', 'scripts/inline_code_style.lua'
     ) }
 )
