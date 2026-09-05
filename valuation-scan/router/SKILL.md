@@ -1,6 +1,6 @@
 ---
 name: valuation-scan-public-router
-description: Public contract for routing a valuation-scan or 估值扫描 request to a private, verified execution adapter.
+description: Route valuation-scan, 估值扫描, or quick valuation-card requests by verifying the security and selecting its US, A-share, or A/H execution path. Requires a configured private adapter.
 ---
 
 # Valuation Scan Router: Public Contract
@@ -51,11 +51,11 @@ The router must not treat A and H listings as two separate companies or add thei
 
 The current runtime has no result cache. Both refresh choices therefore fetch live data; `refresh` records intent while `refreshed` and `data_mode` record what actually happened.
 
-The bundled launcher is provider-neutral. It uses `CODEX_HOME/config.toml` by default, accepts `--config` for an alternate local configuration, and accepts `--server-command` with repeated `--server-arg` and optional `--server-cwd` for a one-off local adapter. Keep credentials in local environment/configuration, never in command-line arguments or the skill directory. If no adapter is available, report the configuration or transport failure and do not synthesize a result.
+The bundled launcher is provider-neutral. It uses `CODEX_HOME/config.toml` by default, accepts `--config` for an alternate local configuration, and accepts `--server-command` with repeated `--server-arg` and optional `--server-cwd` for a one-off local adapter. A configured `enabled = false` stops configuration-based execution, including the implicit local runtime fallback. An explicitly supplied `--server-command` remains a separate one-off override; do not introduce it automatically to bypass a disabled server. Keep credentials in local environment/configuration, never in command-line arguments or the skill directory. If no adapter is available, report the configuration or transport failure and do not synthesize a result.
 
 ## Terminal result
 
-The private executor returns exactly one object matching the public receipt schema:
+The private executor returns exactly one object matching the bundled [public receipt schema](references/valuation_scan_terminal_receipt_v2.schema.json):
 
 - `schema_version = valuation_scan_terminal_receipt_v2`
 - `terminal = true`

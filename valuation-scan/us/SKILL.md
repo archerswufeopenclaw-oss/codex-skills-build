@@ -1,6 +1,6 @@
 ---
 name: valuation-scan-us
-description: Public contract for a single-ticker US valuation-pressure screen.
+description: Render a US valuation-pressure card from a verified security and canonical indicator artifact supplied by the valuation-scan router or private adapter. Use for the US output path; do not acquire data or resolve identity here.
 ---
 
 # US Valuation Scan: Public Contract

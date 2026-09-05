@@ -8,6 +8,8 @@ import sys
 import unicodedata
 from pathlib import Path
 
+from _markdown_blocks import protected_line_flags
+
 
 def display_width(text: str) -> int:
     width = 0
@@ -34,6 +36,7 @@ def split_row(line: str) -> tuple[str, list[str]] | None:
     cells: list[str] = []
     current: list[str] = []
     code_ticks = 0
+    trailing_separator = False
     index = 0
     while index < len(text):
         char = text[index]
@@ -54,6 +57,7 @@ def split_row(line: str) -> tuple[str, list[str]] | None:
             if backslashes % 2 == 0:
                 cells.append("".join(current).strip())
                 current = []
+                trailing_separator = index == len(text) - 1
                 index += 1
                 continue
         current.append(char)
@@ -62,7 +66,7 @@ def split_row(line: str) -> tuple[str, list[str]] | None:
 
     if text.startswith("|"):
         cells = cells[1:]
-    if text.endswith("|"):
+    if trailing_separator:
         cells = cells[:-1]
     return (indent, cells) if len(cells) >= 2 else None
 
@@ -145,37 +149,28 @@ def format_markdown(text: str) -> tuple[str, int]:
         text = text[1:]
     records = [split_line_ending(line) for line in text.splitlines(keepends=True)]
     lines = [line for line, _ in records]
+    protected = protected_line_flags(lines)
     output: list[str] = []
     table_count = 0
-    fence: tuple[str, int] | None = None
     index = 0
 
     while index < len(lines):
-        stripped = lines[index].lstrip(" ")
-        marker = stripped[0] if stripped and stripped[0] in {"`", "~"} else ""
-        run = 0
-        while marker and run < len(stripped) and stripped[run] == marker:
-            run += 1
-        if run >= 3:
-            if fence is None:
-                fence = (marker, run)
-            elif marker == fence[0] and run >= fence[1]:
-                fence = None
-            output.append(lines[index] + records[index][1])
-            index += 1
-            continue
-        if fence is not None:
+        if protected[index]:
             output.append(lines[index] + records[index][1])
             index += 1
             continue
 
         header = split_row(lines[index])
-        next_row = split_row(lines[index + 1]) if index + 1 < len(lines) else None
+        next_row = (
+            split_row(lines[index + 1])
+            if index + 1 < len(lines) and not protected[index + 1]
+            else None
+        )
         if header and next_row and len(header[1]) == len(next_row[1]):
             if all(separator_alignment(cell) for cell in next_row[1]):
                 rows = [header, next_row]
                 cursor = index + 2
-                while cursor < len(lines):
+                while cursor < len(lines) and not protected[cursor]:
                     parsed = split_row(lines[cursor])
                     if not parsed or len(parsed[1]) != len(header[1]):
                         break

@@ -68,6 +68,10 @@ def _server_command(
             ) from exc
 
     server = ((config.get("mcp_servers") or {}).get(server_name) or {})
+    if server.get("enabled") is False:
+        raise ConfigurationError(
+            f"'{server_name}' adapter is disabled (enabled = false) in {config_path}"
+        )
     command = str(server.get("command") or "").strip()
     args = [str(value) for value in (server.get("args") or [])]
     cwd_text = str(server.get("cwd") or "").strip()

@@ -6,27 +6,28 @@ The workflow is a pressure screen. It is not a target-price model, full DCF, fai
 
 ## Install the skill roots
 
-`router`, `us`, and `cn-a-ah` are independent skill roots. Users with access to this repository can copy them into their Codex skills directory. On Windows PowerShell:
+`router`, `us`, and `cn-a-ah` are independent skill roots. From the repository root, copy the following public files into the skill directory used by your host. The example uses `.agents/skills`; set `$skillRoot` to your existing installation directory when updating it. Existing listed files are updated; other files are preserved. Run with PowerShell 7:
 
 ```powershell
-$repoRoot = (Resolve-Path .).Path
-$codexRoot = if ($env:CODEX_HOME) { $env:CODEX_HOME } else { Join-Path $env:USERPROFILE ".codex" }
-$skillRoot = Join-Path $codexRoot "skills"
-
-New-Item -ItemType Directory -Force -Path `
-  (Join-Path $skillRoot "valuation-scan-public-router"), `
-  (Join-Path $skillRoot "valuation-scan-us"), `
-  (Join-Path $skillRoot "valuation-scan-cn-a-ah") | Out-Null
-
-Copy-Item -Recurse -Force "$repoRoot\valuation-scan\router\*" `
-  (Join-Path $skillRoot "valuation-scan-public-router")
-Copy-Item -Recurse -Force "$repoRoot\valuation-scan\us\*" `
-  (Join-Path $skillRoot "valuation-scan-us")
-Copy-Item -Recurse -Force "$repoRoot\valuation-scan\cn-a-ah\*" `
-  (Join-Path $skillRoot "valuation-scan-cn-a-ah")
+$skillRoot = Join-Path $env:USERPROFILE '.agents/skills'
+$packages = @(
+    @{ Name = 'valuation-scan-public-router'; Source = 'valuation-scan/router'; Files = @(
+        'SKILL.md', 'scripts/invoke_valuation_scan.py',
+        'references/valuation_scan_terminal_receipt_v2.schema.json'
+    ) },
+    @{ Name = 'valuation-scan-us'; Source = 'valuation-scan/us'; Files = @('SKILL.md') },
+    @{ Name = 'valuation-scan-cn-a-ah'; Source = 'valuation-scan/cn-a-ah'; Files = @('SKILL.md') }
+)
+foreach ($package in $packages) {
+    foreach ($relative in $package.Files) {
+        $target = Join-Path (Join-Path $skillRoot $package.Name) $relative
+        New-Item -ItemType Directory -Force -Path (Split-Path $target) | Out-Null
+        Copy-Item -LiteralPath (Join-Path $package.Source $relative) -Destination $target -Force
+    }
+}
 ```
 
-The same three directories can be copied to `$CODEX_HOME/skills/` on other platforms.
+The same listed files can be copied on other platforms. Preserve their relative paths so the router's schema link remains valid. This file allowlist excludes local caches and research artifacts.
 
 ## Configure an execution adapter
 
@@ -50,6 +51,8 @@ python -X utf8 -B valuation-scan/router/scripts/invoke_valuation_scan.py `
 
 For an alternate local config, pass `--config`. For a one-off adapter command, pass `--server-command`, repeat `--server-arg` for its arguments, and optionally pass `--server-cwd`. Do not put credentials on the command line.
 
+`enabled = false` in the selected MCP section stops configuration-based execution, including the implicit local runtime fallback, with exit code 78. An explicit `--server-command` is still a separate one-off override; the skill must not supply it automatically to bypass a disabled server.
+
 The launcher only starts the user-supplied adapter, sends one bounded request, validates the terminal receipt, and prints that receipt. It does not fetch market data itself.
 
 ## Included contracts
@@ -58,7 +61,8 @@ The launcher only starts the user-supplied adapter, sends one bounded request, v
 - `router/scripts/invoke_valuation_scan.py`: provider-neutral bounded STDIO bridge.
 - `us/SKILL.md`: single-ticker US pressure-screen contract.
 - `cn-a-ah/SKILL.md`: A-share and A/H pressure-screen contract.
-- `schemas/valuation_scan_terminal_receipt_v2.schema.json`: terminal-receipt shape.
+- `router/references/valuation_scan_terminal_receipt_v2.schema.json`: terminal-receipt shape, bundled with the router.
+- `schemas/valuation_scan_terminal_receipt_v2.schema.json`: identical copy retained at the previously documented repository path; update both copies together.
 - `SECURITY.md`: publication boundary and review checklist.
 
 ## Historical rebuild archive

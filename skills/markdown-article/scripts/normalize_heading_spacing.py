@@ -9,35 +9,17 @@ import re
 import sys
 from pathlib import Path
 
+from _markdown_blocks import protected_line_flags
+
 
 HEADING_RE = re.compile(r" {0,3}#{1,6}(?:[ \t]+|$)")
-FENCE_RE = re.compile(r" {0,3}(`{3,}|~{3,})(.*)$")
 
 
 def _heading_flags(lines: list[str]) -> list[bool]:
-    flags: list[bool] = []
-    fence_char: str | None = None
-    fence_length = 0
-
-    for line in lines:
-        match = FENCE_RE.fullmatch(line)
-        if fence_char is None:
-            flags.append(bool(HEADING_RE.match(line)))
-            if match:
-                fence_char = match.group(1)[0]
-                fence_length = len(match.group(1))
-        else:
-            flags.append(False)
-            if (
-                match
-                and match.group(1)[0] == fence_char
-                and len(match.group(1)) >= fence_length
-                and not match.group(2).strip()
-            ):
-                fence_char = None
-                fence_length = 0
-
-    return flags
+    return [
+        not protected and bool(HEADING_RE.match(line))
+        for line, protected in zip(lines, protected_line_flags(lines))
+    ]
 
 
 def _split_line_ending(line: str) -> tuple[str, str]:

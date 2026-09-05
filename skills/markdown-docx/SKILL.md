@@ -1,6 +1,6 @@
 ---
 name: markdown-docx
-description: Convert a local Markdown article into a styled Microsoft Word DOCX with Pandoc, a bundled Chinese research-article reference document, and Word-native two-stage table auto-fit. Use when Codex is asked to turn a .md or .markdown file into .docx, especially for Chinese investment, tax, legal, or long-form research articles with headings, lists, links, block quotes, footnotes, or pipe tables.
+description: Convert a local .md or .markdown article to a styled Word .docx on Windows using Pandoc, the bundled Chinese article template, and Microsoft Word table auto-fit. Preserve the source wording.
 ---
 
 # Markdown to DOCX
@@ -26,6 +26,7 @@ The converter:
 - maps Markdown inline code (single-backtick text) through a small Pandoc filter to the template's `Inline Code Emphasis` style: 楷体, bold, 12 pt (小四);
 - maps fenced code blocks labeled `text` to the template's `Text Code Block` style: 楷体, regular weight, 10 pt, while preserving literal line breaks and leading spaces;
 - publishes the final output only after both Pandoc conversion and Word table adjustment succeed;
+- stops on Pandoc warnings, including missing images, without publishing a new output;
 - refuses silent overwrite and never changes the source Markdown.
 
 ## Validate

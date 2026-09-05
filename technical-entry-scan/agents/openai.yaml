@@ -1,4 +1,0 @@
-interface:
-  display_name: "Technical Entry Scan"
-  short_description: "A-share scan with four long-horizon technical indicators"
-  default_prompt: "Use $technical-entry-scan to analyze one A-share with MA250, free-float turnover, relative strength, and chip pressure."
