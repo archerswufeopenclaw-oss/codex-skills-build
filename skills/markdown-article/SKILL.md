@@ -1,6 +1,6 @@
 ---
 name: markdown-article
-description: Research and revise local Markdown articles using author directives in **...** spans. Use for markdown-article requests, directive-driven article editing, or /review and /roundtable review within an article.
+description: Research and revise local Markdown articles using author directives in **...** spans. Use for markdown-article requests, /review or /roundtable review, and /explain author notes within an article.
 ---
 
 # Markdown Article
@@ -11,7 +11,7 @@ Edit the author-selected Markdown article in place. Preserve its voice, argument
 
 - Treat every `**...**` span outside inline or fenced code as an author directive. It may appear inline or as its own paragraph.
 - Never add Markdown bold syntax to the article; it is reserved for the author-agent channel.
-- After completing a directive, integrate the result into the prose and remove the whole bold span.
+- After completing a directive, integrate the result into the prose and remove the whole bold span. For `/explain`, put the result in an author note instead, as described below.
 - Let only the main agent modify the article and its companion files.
 
 ## Verification levels
@@ -22,6 +22,33 @@ Edit the author-selected Markdown article in place. Preserve its voice, argument
 
 Subagents research and advise; they do not edit files.
 The main agent may choose each L1 or L2 subagent's model and thinking or reasoning effort based on the task, unless the author specifies them.
+
+## Author explanations
+
+`/explain` inside a directive requests an explanation for the author, separate from the article's formal prose. It controls the output location, not the verification level: it may accompany `/review` or `/roundtable`.
+
+Remove the completed directive and put a short explanation beside the relevant passage using this exact first line and a single contiguous blockquote:
+
+```markdown
+> <span class="author-note">🔴 作者说明（供作者阅读，可整段删除）</span>
+>
+> Explain the purpose, evidence, or tradeoff here.
+```
+
+- Keep the explanation in short paragraphs. Preserve the first-line text and `author-note` class; they identify this block for preview styling and DOCX conversion. Keep ordinary quotations unchanged.
+- Do not add Markdown bold inside the note. On later passes, retain the note until the author asks to revise, remove, or integrate it; do not treat it as a new instruction or silently merge it into formal prose.
+- The red dot and removable-note label work without custom preview styling. Recommend the optional [VS Code preview CSS setup](references/vscode-preview.md) when the author wants the whole note red; do not promise that Codex or every Markdown viewer supports that CSS.
+
+## Document status and dates
+
+When adding or editing clearly identified document-status/date lines below an article title, preserve their wording and mark the complete paragraph as document metadata. This lets DOCX use left alignment without changing body paragraphs:
+
+```markdown
+<span class="doc-meta">内部决策讨论稿\
+政策核查截至某日</span>
+```
+
+The trailing backslash is a Markdown hard line break. Do not classify a paragraph as metadata merely because it is short, follows a heading, or contains a line break. Do not apply this marker to the title, ordinary prose, lists, or tables.
 
 ## Companion workspace
 

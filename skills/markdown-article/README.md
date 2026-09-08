@@ -17,6 +17,8 @@ markdown-article/
 ├── SKILL.md
 ├── README.md
 ├── agents/openai.yaml
+├── assets/author-notes.css
+├── references/vscode-preview.md
 └── scripts/
     ├── _markdown_blocks.py
     ├── align_markdown_tables.py
@@ -52,6 +54,31 @@ Windows 用户目录通常是 `C:\Users\你的用户名`，macOS/Linux 为 `~`�
 - L2：`**/roundtable 检验这一结论最有力的支持与反证。**`，红蓝两名复核者分别找反证和支持。
 
 复核者只提供意见，最终由主代理判断并编辑。复核会增加耗时和模型用量；重要结论仍需要你阅读确认。
+
+## 给作者看的解释：/explain
+
+写下 `**/explain 请说明本小节的用途与取舍。**`，Codex 会在相关段落旁生成可整块删除的说明，不将解释混入正式正文：
+
+```markdown
+> <span class="author-note">🔴 作者说明（供作者阅读，可整段删除）</span>
+>
+> 本小节用于……。保留这段分析，是因为……。
+```
+
+下一轮默认保留说明，直到你要求修改、删除或整合；也可写 `**/explain /review 核验并解释这项计算。**`。请保留固定首行，普通引用不会被当作作者说明。
+
+推荐 VS Code 使用者配置随包的 [预览 CSS](references/vscode-preview.md)，将整块说明显示为红字。未配置 CSS 或使用 Codex 预览时，仍有红色圆点和删除提示，不保证整块红字。转换为 DOCX 后，说明使用宋体、11 pt、红色、左对齐，链接和行内代码也采用这一样式。
+
+## 稿件状态与日期的对齐
+
+标题下面的稿件状态、日期等说明，应使用独立的 `doc-meta` 标记。`markdown-article` 在编辑这类内容时会保留原文并添加标记；`markdown-docx` 据此采用黑色、12 pt、左对齐、无首行缩进的样式，正文继续使用原来的两端对齐。
+
+```markdown
+<span class="doc-meta">内部决策讨论稿\
+政策核查截至某日</span>
+```
+
+行末反斜杠表示硬换行，避免依赖看不见的两个尾随空格。完整段落放在同一个 `span` 内；不要给普通正文套用这个标记。
 
 ## 研究资料与格式整理
 

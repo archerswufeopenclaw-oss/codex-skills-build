@@ -60,3 +60,51 @@ function CodeBlock(element)
     pandoc.Attr(element.identifier, element.classes, block_attributes)
   )
 end
+
+local function styled_inlines(inlines, style_name)
+  return pandoc.Inlines({
+    pandoc.Span(inlines, pandoc.Attr("", {}, { ["custom-style"] = style_name }))
+  })
+end
+
+local function styled_blocks(blocks, paragraph_style, text_style)
+  -- Local character styles must also reach hyperlinks and inline-code spans.
+  -- This walk only touches an explicitly marked author note or document metadata.
+  local container = pandoc.Div(blocks):walk({
+    Span = function(element)
+      element.attributes["custom-style"] = nil
+      return element
+    end,
+    Link = function(element)
+      element.content = styled_inlines(element.content, text_style)
+      return element
+    end,
+    Para = function(element)
+      element.content = styled_inlines(element.content, text_style)
+      return element
+    end,
+    Plain = function(element)
+      element.content = styled_inlines(element.content, text_style)
+      return element
+    end,
+  })
+  container.attributes["custom-style"] = paragraph_style
+  return container
+end
+
+function Para(element)
+  if #element.content == 1 then
+    local span = element.content[1]
+    if span.t == "Span" and has_class(span, "doc-meta") then
+      return styled_blocks({ pandoc.Para(span.content) }, "Doc Meta", "Doc Meta Text")
+    end
+  end
+end
+
+function BlockQuote(element)
+  local first = element.content[1]
+  if first and (first.t == "Para" or first.t == "Plain")
+      and pandoc.utils.stringify(first) == "🔴 作者说明（供作者阅读，可整段删除）" then
+    return styled_blocks(element.content, "Author Note", "Author Note Text")
+  end
+end

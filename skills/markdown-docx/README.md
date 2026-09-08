@@ -45,6 +45,27 @@ markdown-docx/
 - 单反引号包裹的行内代码使用楷体、加粗、小四（12 pt）；标为 `text` 的围栏代码块使用楷体、常规、10 pt，保留换行和缩进。
 - Pandoc 转换和 Word 表格调整都成功后才生成最终文件。图片缺失等 Pandoc 告警会终止转换；失败时不会发布新成品，也不会替换已有 DOCX。
 
+## 作者说明与稿件信息
+
+`markdown-article` 的 `/explain` 会生成下面的作者说明。转换时保留整块内容，采用宋体（西文 Times New Roman）、11 pt、常规字重、红色 `#C00000`、左对齐、无首行缩进；链接与行内代码同样显示为红字。普通引用保持原样。
+
+```markdown
+> <span class="author-note">🔴 作者说明（供作者阅读，可整段删除）</span>
+>
+> 本小节用于……，这部分仅供作者阅读。
+```
+
+请保留完整的固定首行。转换器也接受未加 `span` 的同一首行，但不会把未完成的 `/explain` 指令自动变成解释，也不会自动删除说明。推荐希望在 VS Code 中查看整块红字的用户配置 [可选预览 CSS](https://github.com/archerswufeopenclaw-oss/codex-skills-build/blob/main/skills/markdown-article/references/vscode-preview.md)。只安装本 skill 的用户可从指南链接单独下载 CSS、保存到固定目录后配置，无需安装整个 `markdown-article`。
+
+标题下面的稿件状态、日期等短说明，用下面的标记获得独立的左对齐样式，避免与正文共用两端对齐。它使用黑色、12 pt、常规字重、无首行缩进；行末反斜杠表示硬换行。
+
+```markdown
+<span class="doc-meta">内部决策讨论稿\
+政策核查截至某日</span>
+```
+
+只标记明确的稿件信息。没有标记的普通段落仍按原样转换，转换器不会凭内容长度或位置猜测对齐方式。
+
 ## 可选：直接运行脚本
 
 在安装后的 `markdown-docx` 目录中运行：
