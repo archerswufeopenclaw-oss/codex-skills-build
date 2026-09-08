@@ -1,0 +1,37 @@
+/* Optional VS Code Markdown preview styling; no effect on ordinary quotations. */
+:root {
+  --markdown-author-note-color: #b42318;
+}
+
+body.vscode-dark,
+body.vscode-high-contrast {
+  --markdown-author-note-color: #ff8080;
+}
+
+body.vscode-light,
+body.vscode-high-contrast-light {
+  --markdown-author-note-color: #b42318;
+}
+
+/* Only an explicit marker in the first paragraph identifies an author note. */
+blockquote:has(> p:first-child > span.author-note) {
+  color: var(--markdown-author-note-color);
+  border-left-color: var(--markdown-author-note-color);
+  text-align: left;
+  text-indent: 0;
+}
+
+blockquote:has(> p:first-child > span.author-note) * {
+  color: var(--markdown-author-note-color);
+}
+
+blockquote:has(> p:first-child > span.author-note) p {
+  text-align: left;
+  text-indent: 0;
+}
+
+/* Draft status and dates keep their ordinary color, with no first-line indent. */
+p:has(> span.doc-meta) {
+  text-align: left;
+  text-indent: 0;
+}

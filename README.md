@@ -23,7 +23,8 @@ $skillRoot = Join-Path $env:USERPROFILE '.agents/skills'
 $packages = @(
     @{ Name = 'markdown-article'; Source = 'skills/markdown-article'; Files = @(
         'SKILL.md', 'README.md', 'agents/openai.yaml', 'scripts/_markdown_blocks.py',
-        'scripts/align_markdown_tables.py', 'scripts/normalize_heading_spacing.py'
+        'scripts/align_markdown_tables.py', 'scripts/normalize_heading_spacing.py',
+        'assets/author-notes.css', 'references/vscode-preview.md'
     ) },
     @{ Name = 'markdown-docx'; Source = 'skills/markdown-docx'; Files = @(
         'SKILL.md', 'README.md', 'agents/openai.yaml', 'assets/reference-public.docx',

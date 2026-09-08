@@ -25,6 +25,8 @@ The converter:
 - opens the generated DOCX with local Microsoft Word and applies `wdAutoFitContent` followed by `wdAutoFitWindow` to every table;
 - maps Markdown inline code (single-backtick text) through a small Pandoc filter to the template's `Inline Code Emphasis` style: 楷体, bold, 12 pt (小四);
 - maps fenced code blocks labeled `text` to the template's `Text Code Block` style: 楷体, regular weight, 10 pt, while preserving literal line breaks and leading spaces;
+- maps an author-note blockquote whose complete first paragraph is exactly `🔴 作者说明（供作者阅读，可整段删除）` to `Author Note`: red `C00000`, 宋体 / Times New Roman, regular 11 pt, left-aligned with no first-line indent. An optional `<span class="author-note">` around that label is a preview hook; retain the label, explanatory text, and link destinations. Links and inline code inside the note use the same red text style;
+- maps a complete paragraph wrapped in `<span class="doc-meta">...</span>` to `Doc Meta`: black, 宋体 / Times New Roman, regular 12 pt, left-aligned with no first-line indent. Preserve explicit Markdown hard line breaks. Do not infer metadata from short text or change the alignment of normal body paragraphs;
 - publishes the final output only after both Pandoc conversion and Word table adjustment succeed;
 - stops on Pandoc warnings, including missing images, without publishing a new output;
 - refuses silent overwrite and never changes the source Markdown.
@@ -40,6 +42,7 @@ After conversion:
 5. When inline code is present, confirm it uses 楷体, bold, 12 pt (小四) while fenced blocks not labeled `text` retain their existing code formatting.
 6. When a fenced code block is labeled `text`, confirm it uses 楷体, regular weight, 10 pt and preserves its literal indentation; fenced blocks with other language labels must retain the original code formatting.
 7. Confirm East Asian prose does not gain spaces at source soft line breaks, while intentional spaces, English or mixed-script boundaries, explicit hard line breaks, and code indentation remain intact.
+8. When author notes or document metadata are present, verify their specific styles, including links and inline code within notes. Ordinary blockquotes and body text must retain their existing formatting.
 
 Word's natural pagination, tables crossing pages, a short final page, and formatting errors already present in the Markdown are not converter defects.
 
@@ -50,3 +53,4 @@ Word's natural pagination, tables crossing pages, a short final page, and format
 - Do not globally strip whitespace; only Pandoc's East Asian soft-line-break handling is enabled.
 - Do not post-process DOCX XML, optimize pagination beyond the required Word-native table auto-fit, reproduce structure atom by atom, or switch to another converter.
 - Do not add a title, table of contents, numbering, or metadata that is absent from the Markdown.
+- Do not interpret `/explain` directives or remove author notes during conversion. Generate or edit them with `markdown-article`; this skill only preserves and styles existing marked content. See the README for the exact markup and optional preview CSS.
