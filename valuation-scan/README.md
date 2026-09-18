@@ -4,6 +4,16 @@ This directory is a portable bundle of three Codex skill roots, a terminal-recei
 
 The workflow is a pressure screen. It is not a target-price model, full DCF, fair-value claim, or buy/sell recommendation.
 
+## Current period and review behavior
+
+The US contract supports FMP-based TTM using the latest complete FY plus the current fiscal year's Q1..Qk less the prior fiscal year's matching Q1..Qk. It matches fiscal quarters and actual report dates rather than assuming a calendar-year fiscal year. A newer complete FY takes priority; unavailable or inconsistent quarterly inputs retain a valid FY result. Annual tax and historical-growth rules remain unchanged, and nonpositive TTM cash flow is not a reason to select a more favorable FY.
+
+The private adapter can supply a compact `review_summary` and a complete calculator-generated `fy_fallback`. The skill briefly checks periods and units before displaying the result; it accepts small FMP annual/quarterly differences without a mandatory filing audit. Only an evidenced period or unit error permits selecting the complete FY alternative. The agent does not recalculate or mix figures from the two receipts.
+
+The A-share/A/H contract also gives newer complete annual results priority over older interim TTM. Broad other current assets are excluded from EV deductions, and preferred/perpetual components are not counted again through an other-equity-instruments aggregate.
+
+Updating these public skills does not update the separately installed private calculator or its MCP process. TTM acquisition and calculation require a compatible private adapter; older receipts without the optional review summary retain their original presentation. Keep private runtime code, credentials, live receipts, and machine-specific tunnel configuration outside this bundle.
+
 ## Install the skill roots
 
 `router`, `us`, and `cn-a-ah` are independent skill roots. From the repository root, copy the following public files into the skill directory used by your host. The example uses `.agents/skills`; set `$skillRoot` to your existing installation directory when updating it. Existing listed files are updated; other files are preserved. Run with PowerShell 7:
