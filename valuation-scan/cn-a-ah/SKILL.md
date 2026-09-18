@@ -56,9 +56,17 @@ For an A/H issuer:
 
 The card may retain a combined market-value calculation for internal audit compatibility, but it must not be the human-facing headline.
 
+## FX dates and incomplete views
+
+Prefer a historical HKD/CNY rate for the H-price date. If that rate is unavailable, a timestamped spot quote on the same Hong Kong calendar day may be used. Retain its source timestamp, actual date, and rate type; identify spot FX and its date in the card. Never substitute the request date or retrieval time for a missing source date, or label a spot quote as a historical close.
+
+Missing or date-mismatched FX leaves the H-price EV, Yield, implied growth, and pressure conclusion unformed. Preserve an independently valid A-price view and shared financial inputs, with an overall `partial` status. Show the actual A- and H-price dates when they differ; do not imply that both views use the same trading instant.
+
 ## Output boundary
 
 Return one `valuation_scan_terminal_receipt_v2` object with a deterministic Chinese `markdown_v1` presentation. Bold the `隐含 5Y Owner FCFF CAGR` heading and both A- and H-price values. End the card with the H symbol and result status. Keep source names, raw rows, credentials, local paths, adapter details, and detailed status reason codes outside the public presentation.
+
+For a single A-share card, use the same Chinese pressure labels, hundred-million CNY amounts, percentage ratios, historical comparison, and explicit result status. Internal metric keys and raw decimal ratios do not belong in the card.
 
 ## Prohibitions
 
