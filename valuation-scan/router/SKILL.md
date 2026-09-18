@@ -66,7 +66,9 @@ The private executor returns exactly one object matching the bundled [public rec
 - `presentation.locale = zh-CN`
 - non-empty `presentation.text` with at most 3500 Unicode characters
 
-After validation, only `presentation.text` crosses the user-facing boundary. The raw receipt, internal paths, timing, source payloads, and annual series remain private.
+After validation, render `presentation.text`. For US receipts, apply the brief pre-output check in `valuation-scan-us` when optional `review_summary` is present. Only a clear period or unit error supported by that summary permits selecting the complete `fy_fallback.presentation.text` supplied by the same calculator, with one short reason identifying the FY basis. This is a presentation choice, not another execution attempt or a local recalculation. Never mix values from the main and FY receipts; older receipts without a summary keep their original presentation.
+
+Only the selected presentation and any short FY-selection reason cross the user-facing boundary. The raw receipt, review summary, internal paths, timing, source payloads, and annual series remain private.
 
 ## Non-negotiable boundaries
 

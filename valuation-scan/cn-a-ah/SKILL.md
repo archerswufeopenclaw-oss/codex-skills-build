@@ -34,9 +34,11 @@ TTM component = latest YTD + prior FY - prior same YTD
 TTM FCFF = TTM operating cash flow - TTM long-term construction spending
 ```
 
-Do not annualize a single quarterly or half-year cumulative value. If the bridge is unavailable, use the latest complete fiscal year and label the fallback.
+Use the interim bridge only when its period ends after the latest complete fiscal year. An older interim TTM must not replace a newer complete annual result. Do not annualize a single quarterly or half-year cumulative value. If the bridge is unavailable, use the latest complete fiscal year and label the fallback.
 
 The lightweight Operating EV combines total equity market value with debt-like liabilities, leases, minority interests, preferred/perpetual instruments, and cash-like deductions. Missing required inputs remain `partial`; optional zero defaults must remain visible in provenance.
+
+Do not deduct the broad other-current-assets balance from EV as though it were entirely financial assets. Cash-like deductions must use separately identified eligible items. When preferred and perpetual instruments are included, do not add the aggregate other-equity-instruments balance again.
 
 Historical pressure compares the bounded implied five-year Owner FCFF CAGR with the lowest valid Revenue, NOPAT, and Owner FCFF three-year/five-year CAGR reference. Invalid or non-positive endpoints are excluded rather than changed to zero.
 
