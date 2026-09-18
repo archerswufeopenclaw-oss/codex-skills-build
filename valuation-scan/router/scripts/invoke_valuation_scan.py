@@ -248,9 +248,10 @@ def main() -> int:
         return 70
 
     try:
-        receipt = _validate_receipt(
-            ((response.get("result") or {}).get("structuredContent"))
-        )
+        result = response.get("result")
+        if not isinstance(result, dict):
+            raise ValueError("MCP result is not an object")
+        receipt = _validate_receipt(result.get("structuredContent"))
     except ValueError as exc:
         print(f"valuation-scan fallback receipt invalid: {exc}", file=sys.stderr)
         return 65

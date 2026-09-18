@@ -12,6 +12,8 @@ The private adapter can supply a compact `review_summary` and a complete calcula
 
 The A-share/A/H contract also gives newer complete annual results priority over older interim TTM. Broad other current assets are excluded from EV deductions, and preferred/perpetual components are not counted again through an other-equity-instruments aggregate.
 
+For A/H FX, a timestamped spot quote may replace an unavailable historical rate when its Hong Kong calendar date matches the H-price date. The card identifies the spot basis and actual date. Missing or mismatched FX leaves the H-price metrics unformed while preserving a valid A-price view; an overall `partial` result must not contain a ready H-price conclusion based on invalid FX.
+
 Updating these public skills does not update the separately installed private calculator or its MCP process. TTM acquisition and calculation require a compatible private adapter; older receipts without the optional review summary retain their original presentation. Keep private runtime code, credentials, live receipts, and machine-specific tunnel configuration outside this bundle.
 
 ## Install the skill roots
@@ -64,6 +66,8 @@ For an alternate local config, pass `--config`. For a one-off adapter command, p
 `enabled = false` in the selected MCP section stops configuration-based execution, including the implicit local runtime fallback, with exit code 78. An explicit `--server-command` is still a separate one-off override; the skill must not supply it automatically to bypass a disabled server.
 
 The launcher only starts the user-supplied adapter, sends one bounded request, validates the terminal receipt, and prints that receipt. It does not fetch market data itself.
+
+Malformed non-object MCP results produce a controlled invalid-receipt error. Valid `partial`, `failed`, and `rejected` terminal receipts are returned unchanged after one child-process invocation, without an automatic retry.
 
 ## Included contracts
 

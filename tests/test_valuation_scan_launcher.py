@@ -104,6 +104,22 @@ class ValuationScanLauncherTests(unittest.TestCase):
     def _assert_started(self, adapter: Path, expected: bool) -> None:
         self.assertEqual(adapter.with_suffix(".started").exists(), expected)
 
+    def _write_response_adapter(self, response: dict) -> None:
+        self.configured_adapter.write_text(
+            "import json, sys\n"
+            "from pathlib import Path\n"
+            "with Path(__file__).with_suffix('.started').open('a') as stream:\n"
+            "    stream.write('started\\n')\n"
+            "json.loads(sys.stdin.readline())\n"
+            f"print({json.dumps(response)!r})\n",
+            encoding="utf-8",
+        )
+
+    def _assert_started_once(self) -> None:
+        marker = self.configured_adapter.with_suffix(".started")
+        self.assertEqual(marker.read_text(encoding="utf-8").splitlines(), ["started"])
+        marker.unlink()
+
     def test_disabled_config_does_not_start_command_or_implicit_runtime(self) -> None:
         for command in (True, False):
             with self.subTest(command=command):
@@ -141,6 +157,50 @@ class ValuationScanLauncherTests(unittest.TestCase):
         self._assert_started(override, True)
         self._assert_started(self.configured_adapter, False)
         self._assert_started(self.runtime_adapter, False)
+
+    def test_non_object_result_fails_cleanly_without_retry(self) -> None:
+        self._write_config(True)
+        for result in (None, False, 0, "", [], True, 42, "not an object", ["not an object"]):
+            with self.subTest(result=result):
+                self._write_response_adapter({"jsonrpc": "2.0", "id": 1, "result": result})
+                completed = self._run()
+                self.assertEqual(completed.returncode, 65, completed.stderr)
+                self.assertEqual(completed.stdout, "")
+                self.assertIn("MCP result is not an object", completed.stderr)
+                self.assertNotIn("Traceback", completed.stderr)
+                self._assert_started_once()
+                self._assert_started(self.runtime_adapter, False)
+
+    def test_semantic_terminal_receipts_are_preserved_without_retry(self) -> None:
+        self._write_config(True)
+        for execution, valuation in (
+            ("completed", "partial"),
+            ("failed", "not_assessed"),
+            ("rejected", "not_assessed"),
+        ):
+            with self.subTest(execution=execution, valuation=valuation):
+                receipt = {
+                    "schema_version": "valuation_scan_terminal_receipt_v2",
+                    "terminal": True,
+                    "execution_status": execution,
+                    "valuation_status": valuation,
+                    "symbol": "TEST",
+                    "presentation": {
+                        "format": "plain_text_v1",
+                        "locale": "zh-CN",
+                        "text": "Synthetic terminal status.",
+                    },
+                }
+                self._write_response_adapter({
+                    "jsonrpc": "2.0", "id": 1,
+                    "result": {"structuredContent": receipt},
+                })
+                completed = self._run()
+                self.assertEqual(completed.returncode, 0, completed.stderr)
+                self.assertEqual(json.loads(completed.stdout), receipt)
+                self.assertEqual(completed.stderr, "")
+                self._assert_started_once()
+                self._assert_started(self.runtime_adapter, False)
 
 
 if __name__ == "__main__":
