@@ -1,0 +1,19 @@
+{
+  "highlight.regexes": {
+    "(^[ \\t]{0,3}>[ \\t]*<span class=\"author-note\">🔴 作者说明（供作者阅读，可整段删除）</span>[ \\t]*(?=\\r?$)(?:\\r?\\n[ \\t]{0,3}>[^\\r\\n]*)*)": {
+      "regexFlags": "gm",
+      "filterLanguageRegex": "^markdown$",
+      "decorations": [
+        {
+          "backgroundColor": "#ff000012",
+          "isWholeLine": true,
+          "overviewRulerColor": "#c00000",
+          "dark": {
+            "backgroundColor": "#ff808020",
+            "overviewRulerColor": "#ff8080"
+          }
+        }
+      ]
+    }
+  }
+}

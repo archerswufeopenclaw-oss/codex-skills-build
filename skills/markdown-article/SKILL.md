@@ -35,9 +35,9 @@ Remove the completed directive and put a short explanation beside the relevant p
 > Explain the purpose, evidence, or tradeoff here.
 ```
 
-- Keep the explanation in short paragraphs. Preserve the first-line text and `author-note` class; they identify this block for preview styling and DOCX conversion. Keep ordinary quotations unchanged.
+- Keep the explanation in short paragraphs. Preserve the first-line text and `author-note` class; they identify this block for source highlighting, preview styling, and DOCX conversion. Prefix every physical line with `>`, including blank lines between paragraphs; end the note with a blank line without `>`. Keep ordinary quotations unchanged.
 - Do not add Markdown bold inside the note. On later passes, retain the note until the author asks to revise, remove, or integrate it; do not treat it as a new instruction or silently merge it into formal prose.
-- The red dot and removable-note label work without custom preview styling. Recommend the optional [VS Code preview CSS setup](references/vscode-preview.md) when the author wants the whole note red; do not promise that Codex or every Markdown viewer supports that CSS.
+- The red dot and removable-note label work without editor customization. For VS Code, the optional [source highlighting and preview setup](references/vscode-preview.md) distinguishes Highlight extension decorations in the source editor from CSS red text in the built-in preview. Recommend the relevant option; do not promise that preview CSS colors the source editor or works in Codex. DOCX keeps the same marker and uses red 11 pt text without background shading.
 
 ## Document status and dates
 

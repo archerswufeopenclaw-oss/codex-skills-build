@@ -18,6 +18,7 @@ markdown-article/
 ├── README.md
 ├── agents/openai.yaml
 ├── assets/author-notes.css
+├── assets/vscode-author-notes.settings.json
 ├── references/vscode-preview.md
 └── scripts/
     ├── _markdown_blocks.py
@@ -65,9 +66,9 @@ Windows 用户目录通常是 `C:\Users\你的用户名`，macOS/Linux 为 `~`�
 > 本小节用于……。保留这段分析，是因为……。
 ```
 
-下一轮默认保留说明，直到你要求修改、删除或整合；也可写 `**/explain /review 核验并解释这项计算。**`。请保留固定首行，普通引用不会被当作作者说明。
+下一轮默认保留说明，直到你要求修改、删除或整合；也可写 `**/explain /review 核验并解释这项计算。**`。请保留固定首行，说明的每行都以 `>` 开头，段间空行也写成 `>`；不带 `>` 的空行结束说明。普通引用不会被当作作者说明。
 
-推荐 VS Code 使用者配置随包的 [预览 CSS](references/vscode-preview.md)，将整块说明显示为红字。未配置 CSS 或使用 Codex 预览时，仍有红色圆点和删除提示，不保证整块红字。转换为 DOCX 后，说明使用宋体、11 pt、红色、左对齐，链接和行内代码也采用这一样式。
+推荐按 [VS Code 配置说明](references/vscode-preview.md) 选择：源码编辑区安装 Highlight 扩展并合并随包设置，显示整块浅红底和滚动条标记；内置预览配置 CSS，显示整块红字。源码规则只适用于 Markdown，但也可能高亮代码围栏内的相同字面示例。未配置或使用 Codex 预览时，仍有红点和删除提示。转换为 DOCX 后，同一标记生成宋体、11 pt、红色、左对齐的说明，链接和行内代码同样处理，不添加背景色。
 
 ## 稿件状态与日期的对齐
 

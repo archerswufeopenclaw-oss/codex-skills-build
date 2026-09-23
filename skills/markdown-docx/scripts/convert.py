@@ -28,11 +28,12 @@ def find_pandoc() -> Path:
     raise SystemExit("Pandoc was not found in PATH or the standard per-user location.")
 
 
-def find_windows_powershell() -> Path:
-    if found := shutil.which("powershell.exe"):
+def find_powershell7() -> Path:
+    if found := shutil.which("pwsh.exe"):
         return Path(found)
     raise SystemExit(
-        "Windows PowerShell was not found; Microsoft Word table auto-fit cannot run."
+        "PowerShell 7 (pwsh.exe) was not found in PATH; "
+        "Microsoft Word table auto-fit cannot run."
     )
 
 
@@ -83,7 +84,7 @@ def main() -> int:
         raise SystemExit(f"Inline-code filter does not exist: {INLINE_CODE_FILTER}")
 
     pandoc = find_pandoc()
-    powershell = find_windows_powershell()
+    powershell = find_powershell7()
     output.parent.mkdir(parents=True, exist_ok=True)
 
     with tempfile.TemporaryDirectory(
