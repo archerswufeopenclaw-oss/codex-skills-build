@@ -4,7 +4,7 @@
 
 ## 使用前
 
-- 需要 Windows、本机桌面版 Microsoft Word、Python（建议 3.11+）、Pandoc，以及可运行的 Windows PowerShell（`powershell.exe`）。网页版 Word 和仅安装 PowerShell 7 均不能替代这些依赖。
+- 需要 Windows、本机桌面版 Microsoft Word、Python（建议 3.11+）、Pandoc，以及 PATH 中可运行的 PowerShell 7（`pwsh.exe`）。网页版 Word 不能替代本机桌面版 Word。
 - Python 脚本只使用标准库，无需安装额外 Python 包。Pandoc 需在 PATH 中，或安装于 `%LOCALAPPDATA%\Pandoc\pandoc.exe`。
 - Word 应能正常打开文档，并具备模板使用的中文字体（包括楷体）。图片等相对路径以源 Markdown 所在目录为准。
 
@@ -56,6 +56,8 @@ markdown-docx/
 ```
 
 请保留完整的固定首行。转换器也接受未加 `span` 的同一首行，但不会把未完成的 `/explain` 指令自动变成解释，也不会自动删除说明。推荐希望在 VS Code 中查看整块红字的用户配置 [可选预览 CSS](https://github.com/archerswufeopenclaw-oss/codex-skills-build/blob/main/skills/markdown-article/references/vscode-preview.md)。只安装本 skill 的用户可从指南链接单独下载 CSS、保存到固定目录后配置，无需安装整个 `markdown-article`。
+
+编辑源码时，可按同一指南安装 **Highlight（`fabiospampinato.vscode-highlight`）** 并合并作者说明高亮配置，为连续的 `>` 说明行显示浅红底色。说明内部的空行也保留 `>`，说明后用不带 `>` 的空行与正文分开。源码高亮、预览 CSS 和 DOCX 使用同一标记；编辑器底色不会写入 Markdown 或带入 Word，DOCX 仍为上述 11 pt 红字。只安装本 skill 的用户可以单独取得配置片段，转换本身不依赖该扩展或 CSS。
 
 标题下面的稿件状态、日期等短说明，用下面的标记获得独立的左对齐样式，避免与正文共用两端对齐。它使用黑色、12 pt、常规字重、无首行缩进；行末反斜杠表示硬换行。
 

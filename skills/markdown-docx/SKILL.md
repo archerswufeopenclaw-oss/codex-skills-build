@@ -9,10 +9,14 @@ Convert one explicitly named Markdown file at a time. Preserve the source file a
 
 ## Convert
 
-Run the bundled converter:
+Resolve the converter from the directory containing this loaded `SKILL.md`,
+regardless of the current working directory or installation location. Use
+PowerShell 7 (`pwsh.exe`); the converter also uses it for Word table auto-fit.
 
 ```powershell
-python -X utf8 -B scripts/convert.py "C:\path\article.md"
+$skillRoot = 'C:\path\to\markdown-docx' # Directory containing the loaded SKILL.md.
+$converter = Join-Path $skillRoot 'scripts\convert.py'
+python -X utf8 -B $converter "C:\path\article.md"
 ```
 
 By default, write `article.docx` beside `article.md`. Use `--output` for another destination. Add `--overwrite` only when replacing an existing DOCX is intended.
@@ -53,4 +57,4 @@ Word's natural pagination, tables crossing pages, a short final page, and format
 - Do not globally strip whitespace; only Pandoc's East Asian soft-line-break handling is enabled.
 - Do not post-process DOCX XML, optimize pagination beyond the required Word-native table auto-fit, reproduce structure atom by atom, or switch to another converter.
 - Do not add a title, table of contents, numbering, or metadata that is absent from the Markdown.
-- Do not interpret `/explain` directives or remove author notes during conversion. Generate or edit them with `markdown-article`; this skill only preserves and styles existing marked content. See the README for the exact markup and optional preview CSS.
+- Do not interpret `/explain` directives or remove author notes during conversion. Generate or edit them with `markdown-article`; this skill only preserves and styles existing marked content. See the README for the exact markup, optional VS Code source highlighting, and preview CSS. Editor decorations do not become document content or DOCX shading; conversion does not require the editor extension or CSS.

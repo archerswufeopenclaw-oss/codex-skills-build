@@ -38,7 +38,7 @@ class MarkdownDocxConversionTests(unittest.TestCase):
         self.enterContext(patch.object(CONVERTER, "parse_args", return_value=self.args))
         self.enterContext(
             patch.object(
-                CONVERTER, "find_windows_powershell", return_value=Path("powershell.exe")
+                CONVERTER, "find_powershell7", return_value=Path("pwsh.exe")
             )
         )
         self.enterContext(redirect_stdout(io.StringIO()))
@@ -172,6 +172,33 @@ class MarkdownDocxConversionTests(unittest.TestCase):
         )
         self.assertEqual(text, "正文保持原样。")
         self.assert_source_and_staging_intact()
+
+
+@unittest.skipUnless(os.name == "nt", "The converter requires Windows")
+class MarkdownDocxPowerShellTests(unittest.TestCase):
+    def test_legacy_powershell_alone_fails_before_conversion(self) -> None:
+        with tempfile.TemporaryDirectory(prefix="markdown-docx-pwsh-test-") as directory:
+            source = Path(directory) / "article.md"
+            output = source.with_suffix(".docx")
+            source.write_bytes(b"source text\n")
+            output.write_bytes(b"existing document")
+            args = argparse.Namespace(input=source, output=output, overwrite=True)
+            with (
+                patch.object(CONVERTER, "parse_args", return_value=args),
+                patch.object(CONVERTER, "find_pandoc", return_value=Path("pandoc.exe")),
+                patch.object(
+                    CONVERTER.shutil,
+                    "which",
+                    side_effect=lambda name: "powershell.exe" if name == "powershell.exe" else None,
+                ),
+                patch.object(CONVERTER, "run_checked") as run_checked,
+            ):
+                with self.assertRaisesRegex(SystemExit, "PowerShell 7"):
+                    CONVERTER.main()
+                run_checked.assert_not_called()
+            self.assertEqual(source.read_bytes(), b"source text\n")
+            self.assertEqual(output.read_bytes(), b"existing document")
+            self.assertEqual(list(Path(directory).glob(".markdown-docx-*")), [])
 
 
 class MarkdownDocxPlatformTests(unittest.TestCase):
