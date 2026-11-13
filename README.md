@@ -1,6 +1,6 @@
 # Codex Skills Build
 
-本仓库维护五个可独立安装的 skill 入口。可安装的 skill 文件不包含私有数据服务、凭据或真实研究资料；仓库另保留明确标记的历史重建资料。
+本仓库维护六个可独立安装的 skill 入口。可安装的 skill 文件不包含私有数据服务、凭据或真实研究资料；仓库另保留明确标记的历史重建资料。
 
 | Skill | 源目录 | 用途与依赖 |
 | --- | --- | --- |
@@ -9,6 +9,7 @@
 | valuation-scan-public-router | `valuation-scan/router` | 证券识别和市场路由；启动器需要 Python 3.11+ 及已配置的私有执行器 |
 | valuation-scan-us | `valuation-scan/us` | 已核实美股标的的估值压力卡片契约 |
 | valuation-scan-cn-a-ah | `valuation-scan/cn-a-ah` | 非金融 A 股及 A/H 公司的估值压力契约；A/H 必须展示两套价格 |
+| dsh | [skills/dsh/SKILL.md](skills/dsh/SKILL.md) | 通过本机官方 DeepSeek Harness CLI 执行任务；需单独安装、配置 DSH，Windows 示例使用 PowerShell 7 |
 
 `technical-entry-scan` 已退役，不再作为仓库发布入口；历史实现保留在 Git 历史中。
 
@@ -52,7 +53,7 @@ python -m venv .venv
 .\.venv\Scripts\python.exe -X utf8 -B -m unittest discover -s tests -v
 ```
 
-`requirements-dev.txt` 中的 PyYAML 仅用于技能元数据校验，业务脚本没有新增第三方 Python 依赖。用该环境运行宿主 Skill Creator 提供的 `scripts/quick_validate.py <skill目录>`，逐一检查上表五个入口。
+`requirements-dev.txt` 中的 PyYAML 仅用于技能元数据校验，业务脚本没有新增第三方 Python 依赖。用该环境运行宿主 Skill Creator 提供的 `scripts/quick_validate.py <skill目录>`，逐一检查上表六个入口。
 
 DOCX 测试包含真实 Pandoc 转换与模拟 Word 阶段，不启动 Word/COM，不能代替 Word 排版验收。转换器目前将所有 Pandoc 警告视为失败，避免缺图等内容损失进入成品。
 

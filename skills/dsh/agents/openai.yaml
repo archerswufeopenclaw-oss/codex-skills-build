@@ -1,0 +1,5 @@
+interface:
+  display_name: "DSH · DeepSeek Harness"
+  short_description: "通过本机 DSH 执行指定任务，并由 Codex 检查结果"
+policy:
+  allow_implicit_invocation: true
